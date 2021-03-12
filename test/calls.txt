@@ -1,0 +1,71 @@
+# No Parameters
+
+function()
+
+==>
+
+Recipe(Call(Name))
+
+# One Variable
+
+f(x)
+
+==>
+
+Recipe(Call(Name, Name))
+
+# Two Variables
+
+f(x,y)
+
+==>
+
+Recipe(Call(Name, Name, Name))
+
+# Three Variables
+
+f(x,y,z)
+
+==>
+
+Recipe(Call(Name, Name, Name, Name))
+
+# Nested Call
+
+f(q())
+
+==>
+
+Recipe(Call(Name, Call(Name)))
+
+# Nested Nested Call
+
+f(q(r()))
+
+==>
+
+Recipe(Call(Name, Call(Name, Call(Name))))
+
+# Variable and Call
+
+f(x,q())
+
+==>
+
+Recipe(Call(Name, Name, Call(Name)))
+
+# Call and Variable
+
+f(q(),y)
+
+==>
+
+Recipe(Call(Name, Call(Name), Name))
+
+# Nested Nested Call with Variable Parameters
+
+f(q(r(x,y),z))
+
+==>
+
+Recipe(Call(Name, Call(Name, Call(Name, Name, Name), Name)))
