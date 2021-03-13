@@ -1,0 +1,78 @@
+# Empty
+
+
+
+==>
+
+Recipe()
+
+# Two Alias Statements
+
+y = x
+z = y
+
+==>
+
+Recipe(
+  Alias(Variable, Variable),
+  Alias(Variable, Variable)
+)
+
+# Mixed Statements
+
+y = f(x)
+x = y
+g()
+
+==>
+
+Recipe(
+  Assignment(Variable, Call(Variable))
+  Alias(Variable,Variable),
+  Call()
+)
+
+# Line Comment
+
+// Comment
+
+==>
+
+Recipe(LineComment)
+
+# Block Comments
+
+/* OneLine */
+/*
+  Newline
+*/
+/*/*DoubleStart*/
+/***
+  Stars
+***/
+
+==>
+
+Recipe(BlockComment, BlockComment, BlockComment, BlockComment)
+
+# Mixed Statements with Comments
+
+// Comment
+y = f(x)
+/* Comment */
+x = y
+/*
+Comment
+*/
+g()
+
+==>
+
+Recipe(
+  LineComment
+  Assignment(Variable, Call(Variable))
+  BlockComment
+  Alias(Variable,Variable),
+  BlockComment
+  Call()
+)

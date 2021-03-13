@@ -1,18 +1,18 @@
 # No Parameters
 
-function()
+func()
 
 ==>
 
-Recipe(Call(Name))
+Recipe(Call)
 
 # One Variable
 
-f(x)
+f( x )
 
 ==>
 
-Recipe(Call(Name, Name))
+Recipe(Call(Variable))
 
 # Two Variables
 
@@ -20,52 +20,67 @@ f(x,y)
 
 ==>
 
-Recipe(Call(Name, Name, Name))
+Recipe(Call(Variable, Variable))
 
 # Three Variables
 
-f(x,y,z)
+f(x, y, z)
 
 ==>
 
-Recipe(Call(Name, Name, Name, Name))
+Recipe(Call(Variable, Variable, Variable))
 
 # Nested Call
 
-f(q())
+f(g())
 
 ==>
 
-Recipe(Call(Name, Call(Name)))
+Recipe(Call(Call))
 
 # Nested Nested Call
 
-f(q(r()))
+f( g( h() ) )
 
 ==>
 
-Recipe(Call(Name, Call(Name, Call(Name))))
+Recipe(Call(Call(Call)))
 
 # Variable and Call
 
-f(x,q())
+f ( x , g ( ) )
 
 ==>
 
-Recipe(Call(Name, Name, Call(Name)))
+Recipe(Call(Variable, Call))
 
 # Call and Variable
 
-f(q(),y)
+f (
+  g ( ) ,
+  y
+)
 
 ==>
 
-Recipe(Call(Name, Call(Name), Name))
+Recipe(Call(Call, Variable))
 
 # Nested Nested Call with Variable Parameters
 
-f(q(r(x,y),z))
+f(
+  g(
+    h(x,y),
+    z
+  )
+)
 
 ==>
 
-Recipe(Call(Name, Call(Name, Call(Name, Name, Name), Name)))
+Recipe(
+  Call(
+    Call(
+      Call(Variable, Variable),
+      Variable
+    )
+  )
+)

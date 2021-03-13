@@ -1,13 +1,36 @@
 @top Recipe { statement* }
 
-statement { Call | Assignment }
+statement { Call | Alias | Assignment }
 
-value { Name | Call }
+Call { identifier "(" ( value ("," value)* )? ")" }
 
-Call { Name "(" ( value ("," value)* )? ")" }
+value { Variable | Call }
 
-Assignment { Name "=" ( Name | Call )}
+Variable { identifier }
+
+Alias { Variable "=" Variable }
+
+Assignment { Variable "=" Call }
+
+@skip { whitespace | LineComment | BlockComment }
 
 @tokens {
-  Name { std.asciiLetter+ }
+  whitespace { std.whitespace+ }
+
+  LineComment { "//" ![\n]* }
+
+  BlockComment { "/*" blockCommentRest }
+
+  blockCommentRest { ![*] blockCommentRest | "*" blockCommentAfterStar }
+
+  blockCommentAfterStar { "/" | "*" blockCommentAfterStar | ![/*] blockCommentRest }
+
+  identifierChar { std.asciiLetter | $[_$\u{a1}-\u{10ffff}] }
+
+  word { identifierChar (identifierChar | std.digit)* }
+
+  identifier { word }
+
+  @precedence { identifier, whitespace }
+
 }

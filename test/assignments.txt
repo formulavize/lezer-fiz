@@ -1,0 +1,15 @@
+# Single Variable Alias
+
+x = y
+
+==>
+
+Recipe(Alias(Variable,Variable))
+
+# Single Variable Assignment
+
+foo = f()
+
+==>
+
+Recipe(Assignment(Variable,Call))
