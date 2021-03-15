@@ -13,3 +13,11 @@ foo = f()
 ==>
 
 Recipe(Assignment(Variable,Call))
+
+# Unpacked Variable List Assignment
+
+a, b, c = g()
+
+==>
+
+Recipe(Assignment(Variable,Variable,Variable,Call))

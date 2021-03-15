@@ -10,7 +10,7 @@ Variable { identifier }
 
 Alias { Variable "=" Variable }
 
-Assignment { Variable "=" Call }
+Assignment { Variable ("," Variable)* "=" Call }
 
 @skip { whitespace | LineComment | BlockComment }
 
