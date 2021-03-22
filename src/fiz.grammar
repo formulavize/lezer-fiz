@@ -1,4 +1,6 @@
-@top Recipe { statement* }
+@top Recipe { fullStatement* }
+
+fullStatement { statement semi }
 
 statement { Call | Alias | Assignment }
 
@@ -11,6 +13,8 @@ Variable { identifier }
 Alias { Variable "=" Variable }
 
 Assignment { Variable ("," Variable)* "=" Call }
+
+semi { ";" | omitSemi }
 
 @skip { whitespace | LineComment | BlockComment }
 
@@ -34,3 +38,5 @@ Assignment { Variable ("," Variable)* "=" Call }
   @precedence { identifier, whitespace }
 
 }
+
+@external tokens omitSemicolon from "./tokens" { omitSemi }

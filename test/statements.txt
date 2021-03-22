@@ -76,3 +76,68 @@ Recipe(
   BlockComment
   Call()
 )
+
+# Semicolons
+
+y = f(x);
+x = y;
+g();
+
+==>
+
+Recipe(
+  Assignment(Variable, Call(Variable))
+  Alias(Variable,Variable),
+  Call()
+)
+
+# Semicolons Same Line
+
+a=b();f();x=y;
+
+==>
+
+Recipe(
+  Assignment(Variable, Call()),
+  Call(),
+  Alias(Variable, Variable)
+)
+
+# Semicolon Same Line Divider
+
+y = f(
+  x,
+  y,
+  z
+) ; a = b
+
+==>
+
+Recipe(
+  Assignment(Variable, Call(Variable, Variable, Variable)),
+  Alias(Variable, Variable)
+)
+
+# Diagram
+
+         x = f(i); y = g(j) 
+//       |         |
+   m = a(x); n = b(y)
+//  \       /
+//   \     /
+//    \   /
+   foo(m,n)
+
+==>
+
+Recipe(
+  Assignment(Variable, Call(Variable)),
+  Assignment(Variable, Call(Variable)),
+  LineComment,
+  Assignment(Variable, Call(Variable)),
+  Assignment(Variable, Call(Variable)),
+  LineComment,
+  LineComment,
+  LineComment,
+  Call(Variable, Variable)
+)
