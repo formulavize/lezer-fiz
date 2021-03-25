@@ -1,0 +1,42 @@
+@top Recipe { fullStatement* }
+
+fullStatement { statement semi }
+
+statement { Call | Alias | Assignment }
+
+Call { identifier "(" ( value ("," value)* )? ")" }
+
+value { Variable | Call }
+
+Variable { identifier }
+
+Alias { Variable "=" Variable }
+
+Assignment { Variable ("," Variable)* "=" Call }
+
+semi { ";" | omitSemi }
+
+@skip { whitespace | LineComment | BlockComment }
+
+@tokens {
+  whitespace { std.whitespace+ }
+
+  LineComment { "//" ![\n]* }
+
+  BlockComment { "/*" blockCommentRest }
+
+  blockCommentRest { ![*] blockCommentRest | "*" blockCommentAfterStar }
+
+  blockCommentAfterStar { "/" | "*" blockCommentAfterStar | ![/*] blockCommentRest }
+
+  identifierChar { std.asciiLetter | $[_$\u{a1}-\u{10ffff}] }
+
+  word { identifierChar (identifierChar | std.digit)* }
+
+  identifier { word }
+
+  @precedence { identifier, whitespace }
+
+}
+
+@external tokens omitSemicolon from "./tokens" { omitSemi }

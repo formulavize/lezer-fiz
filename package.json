@@ -1,0 +1,35 @@
+{
+  "name": "lezer-fiz",
+  "version": "0.1.0",
+  "description": "fiz grammar for lezer",
+  "main": "dist/index.cjs",
+  "type": "module",
+  "exports": {
+    "import": "./dist/index.es.js",
+    "require": ".dist/index.cjs"
+  },
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "lezer": "^0.13.4"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "lezer-generator": "^0.13.3",
+    "mocha": "^8.3.1",
+    "rollup": "^2.41.1"
+  },
+  "scripts": {
+    "build": "lezer-generator src/fiz.grammar -o src/parser && rollup -c",
+    "build-debug": "lezer-generator src/fiz.grammar --names -o src/parser && rollup -c",
+    "prepare": "npm run build",
+    "test": "npm run build && mocha test/test-fiz.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthologen/lezer-fiz.git"
+  },
+  "author": "anthologen",
+  "license": "MIT",
+  "homepage": "https://github.com/anthologen/lezer-fiz#readme"
+}

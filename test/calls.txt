@@ -1,0 +1,86 @@
+# No Parameters
+
+func()
+
+==>
+
+Recipe(Call)
+
+# One Variable
+
+f( x )
+
+==>
+
+Recipe(Call(Variable))
+
+# Two Variables
+
+f(x,y)
+
+==>
+
+Recipe(Call(Variable, Variable))
+
+# Three Variables
+
+f(x, y, z)
+
+==>
+
+Recipe(Call(Variable, Variable, Variable))
+
+# Nested Call
+
+f(g())
+
+==>
+
+Recipe(Call(Call))
+
+# Nested Nested Call
+
+f( g( h() ) )
+
+==>
+
+Recipe(Call(Call(Call)))
+
+# Variable and Call
+
+f ( x , g ( ) )
+
+==>
+
+Recipe(Call(Variable, Call))
+
+# Call and Variable
+
+f (
+  g ( ) ,
+  y
+)
+
+==>
+
+Recipe(Call(Call, Variable))
+
+# Nested Nested Call with Variable Parameters
+
+f(
+  g(
+    h(x,y),
+    z
+  )
+)
+
+==>
+
+Recipe(
+  Call(
+    Call(
+      Call(Variable, Variable),
+      Variable
+    )
+  )
+)
