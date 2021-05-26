@@ -4,7 +4,7 @@ func()
 
 ==>
 
-Recipe(Call)
+Recipe(Call(ArgList))
 
 # One Variable
 
@@ -12,7 +12,7 @@ f( x )
 
 ==>
 
-Recipe(Call(Variable))
+Recipe(Call(ArgList(Variable)))
 
 # Two Variables
 
@@ -20,7 +20,7 @@ f(x,y)
 
 ==>
 
-Recipe(Call(Variable, Variable))
+Recipe(Call(ArgList(Variable, Variable)))
 
 # Three Variables
 
@@ -28,7 +28,7 @@ f(x, y, z)
 
 ==>
 
-Recipe(Call(Variable, Variable, Variable))
+Recipe(Call(ArgList(Variable, Variable, Variable)))
 
 # Nested Call
 
@@ -36,7 +36,7 @@ f(g())
 
 ==>
 
-Recipe(Call(Call))
+Recipe(Call(ArgList(Call(ArgList))))
 
 # Nested Nested Call
 
@@ -44,7 +44,7 @@ f( g( h() ) )
 
 ==>
 
-Recipe(Call(Call(Call)))
+Recipe(Call(ArgList(Call(ArgList(Call(ArgList))))))
 
 # Variable and Call
 
@@ -52,7 +52,7 @@ f ( x , g ( ) )
 
 ==>
 
-Recipe(Call(Variable, Call))
+Recipe(Call(ArgList(Variable, Call(ArgList))))
 
 # Call and Variable
 
@@ -63,7 +63,7 @@ f (
 
 ==>
 
-Recipe(Call(Call, Variable))
+Recipe(Call(ArgList(Call(ArgList), Variable)))
 
 # Nested Nested Call with Variable Parameters
 
@@ -77,10 +77,10 @@ f(
 ==>
 
 Recipe(
-  Call(
-    Call(
-      Call(Variable, Variable),
+  Call(ArgList(
+    Call(ArgList(
+      Call(ArgList(Variable, Variable)),
       Variable
-    )
-  )
+    ))
+  ))
 )

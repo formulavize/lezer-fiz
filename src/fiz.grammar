@@ -4,7 +4,9 @@ fullStatement { statement semi }
 
 statement { Call | Alias | Assignment }
 
-Call { identifier "(" ( value ("," value)* )? ")" }
+ArgList { "(" ( value ("," value)* )? ")" }
+
+Call { identifier ArgList }
 
 value { Variable | Call }
 

@@ -27,9 +27,9 @@ g()
 ==>
 
 Recipe(
-  Assignment(Variable, Call(Variable))
+  Assignment(Variable, Call(ArgList(Variable)))
   Alias(Variable,Variable),
-  Call()
+  Call(ArgList)
 )
 
 # Line Comment
@@ -70,11 +70,11 @@ g()
 
 Recipe(
   LineComment
-  Assignment(Variable, Call(Variable))
+  Assignment(Variable, Call(ArgList(Variable)))
   BlockComment
   Alias(Variable,Variable),
   BlockComment
-  Call()
+  Call(ArgList)
 )
 
 # Semicolons
@@ -86,9 +86,9 @@ g();
 ==>
 
 Recipe(
-  Assignment(Variable, Call(Variable))
+  Assignment(Variable, Call(ArgList(Variable)))
   Alias(Variable,Variable),
-  Call()
+  Call(ArgList)
 )
 
 # Semicolons Same Line
@@ -98,8 +98,8 @@ a=b();f();x=y;
 ==>
 
 Recipe(
-  Assignment(Variable, Call()),
-  Call(),
+  Assignment(Variable, Call(ArgList)),
+  Call(ArgList),
   Alias(Variable, Variable)
 )
 
@@ -114,7 +114,7 @@ y = f(
 ==>
 
 Recipe(
-  Assignment(Variable, Call(Variable, Variable, Variable)),
+  Assignment(Variable, Call(ArgList(Variable, Variable, Variable))),
   Alias(Variable, Variable)
 )
 
@@ -131,13 +131,13 @@ Recipe(
 ==>
 
 Recipe(
-  Assignment(Variable, Call(Variable)),
-  Assignment(Variable, Call(Variable)),
+  Assignment(Variable, Call(ArgList(Variable))),
+  Assignment(Variable, Call(ArgList(Variable))),
   LineComment,
-  Assignment(Variable, Call(Variable)),
-  Assignment(Variable, Call(Variable)),
+  Assignment(Variable, Call(ArgList(Variable))),
+  Assignment(Variable, Call(ArgList(Variable))),
   LineComment,
   LineComment,
   LineComment,
-  Call(Variable, Variable)
+  Call(ArgList(Variable, Variable))
 )

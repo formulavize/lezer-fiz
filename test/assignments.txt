@@ -12,7 +12,7 @@ foo = f()
 
 ==>
 
-Recipe(Assignment(Variable,Call))
+Recipe(Assignment(Variable,Call(ArgList)))
 
 # Unpacked Variable List Assignment
 
@@ -20,4 +20,4 @@ a, b, c = g()
 
 ==>
 
-Recipe(Assignment(Variable,Variable,Variable,Call))
+Recipe(Assignment(Variable,Variable,Variable,Call(ArgList)))
