@@ -39,6 +39,8 @@ semi { ";" | omitSemi }
 
   @precedence { identifier, whitespace }
 
+  "(" ")"
+
 }
 
 @external tokens omitSemicolon from "./tokens" { omitSemi }
