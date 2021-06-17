@@ -2,15 +2,15 @@
 
 fullStatement { statement semi }
 
-statement { Call | Alias | Assignment }
+statement[@isGroup=Statement] { Call | Alias | Assignment }
 
 ArgList { "(" ( value ("," value)* )? ")" }
 
-Call { identifier ArgList }
+Call { Identifier ArgList }
 
-value { Variable | Call }
+value[@isGroup=Value] { Variable | Call }
 
-Variable { identifier }
+Variable { Identifier }
 
 Alias { Variable "=" Variable }
 
@@ -35,9 +35,9 @@ semi { ";" | omitSemi }
 
   word { identifierChar (identifierChar | std.digit)* }
 
-  identifier { word }
+  Identifier { word }
 
-  @precedence { identifier, whitespace }
+  @precedence { Identifier, whitespace }
 
   "(" ")"
 

@@ -4,7 +4,9 @@ func()
 
 ==>
 
-Recipe(Call(ArgList))
+Recipe(
+  Call(Identifier,ArgList)
+)
 
 # One Variable
 
@@ -12,7 +14,11 @@ f( x )
 
 ==>
 
-Recipe(Call(ArgList(Variable)))
+Recipe(
+  Call(Identifier,ArgList(
+    Variable(Identifier)
+  ))
+)
 
 # Two Variables
 
@@ -20,7 +26,12 @@ f(x,y)
 
 ==>
 
-Recipe(Call(ArgList(Variable, Variable)))
+Recipe(
+  Call(Identifier,ArgList(
+    Variable(Identifier),
+    Variable(Identifier)
+  ))
+)
 
 # Three Variables
 
@@ -28,7 +39,16 @@ f(x, y, z)
 
 ==>
 
-Recipe(Call(ArgList(Variable, Variable, Variable)))
+Recipe(
+  Call(
+    Identifier,
+    ArgList(
+      Variable(Identifier),
+      Variable(Identifier),
+      Variable(Identifier)
+    )
+  )
+)
 
 # Nested Call
 
@@ -36,7 +56,11 @@ f(g())
 
 ==>
 
-Recipe(Call(ArgList(Call(ArgList))))
+Recipe(
+  Call(Identifier,ArgList(
+    Call(Identifier,ArgList)
+  ))
+)
 
 # Nested Nested Call
 
@@ -44,7 +68,13 @@ f( g( h() ) )
 
 ==>
 
-Recipe(Call(ArgList(Call(ArgList(Call(ArgList))))))
+Recipe(
+  Call(Identifier,ArgList(
+    Call(Identifier,ArgList(
+      Call(Identifier,ArgList)
+    ))
+  ))
+)
 
 # Variable and Call
 
@@ -52,7 +82,12 @@ f ( x , g ( ) )
 
 ==>
 
-Recipe(Call(ArgList(Variable, Call(ArgList))))
+Recipe(
+  Call(Identifier,ArgList(
+    Variable(Identifier),
+    Call(Identifier,ArgList)
+  ))
+)
 
 # Call and Variable
 
@@ -63,7 +98,12 @@ f (
 
 ==>
 
-Recipe(Call(ArgList(Call(ArgList), Variable)))
+Recipe(
+  Call(Identifier,ArgList(
+    Call(Identifier,ArgList),
+    Variable(Identifier)
+  ))
+)
 
 # Nested Nested Call with Variable Parameters
 
@@ -77,10 +117,10 @@ f(
 ==>
 
 Recipe(
-  Call(ArgList(
-    Call(ArgList(
-      Call(ArgList(Variable, Variable)),
-      Variable
+  Call(Identifier,ArgList(
+    Call(Identifier,ArgList(
+      Call(Identifier,ArgList(Variable(Identifier), Variable(Identifier))),
+      Variable(Identifier)
     ))
   ))
 )

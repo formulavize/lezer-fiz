@@ -4,7 +4,12 @@ x = y
 
 ==>
 
-Recipe(Alias(Variable,Variable))
+Recipe(
+  Alias(
+    Variable(Identifier),
+    Variable(Identifier)
+  )
+)
 
 # Single Variable Assignment
 
@@ -12,7 +17,12 @@ foo = f()
 
 ==>
 
-Recipe(Assignment(Variable,Call(ArgList)))
+Recipe(
+  Assignment(
+    Variable(Identifier),
+    Call(Identifier,ArgList)
+  )
+)
 
 # Unpacked Variable List Assignment
 
@@ -20,4 +30,11 @@ a, b, c = g()
 
 ==>
 
-Recipe(Assignment(Variable,Variable,Variable,Call(ArgList)))
+Recipe(
+  Assignment(
+    Variable(Identifier),
+    Variable(Identifier),
+    Variable(Identifier),
+    Call(Identifier,ArgList)
+  )
+)
