@@ -12,9 +12,11 @@ value[@isGroup=Value] { Variable | Call }
 
 Variable { Identifier }
 
-Alias { Variable "=" Variable }
+Eq { "=" }
 
-Assignment { Variable ("," Variable)* "=" Call }
+Alias { Variable Eq Variable }
+
+Assignment { Variable ("," Variable)* Eq Call }
 
 semi { ";" | omitSemi }
 

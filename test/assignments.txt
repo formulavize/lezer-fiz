@@ -7,6 +7,7 @@ x = y
 Recipe(
   Alias(
     Variable(Identifier),
+    Eq,
     Variable(Identifier)
   )
 )
@@ -20,6 +21,7 @@ foo = f()
 Recipe(
   Assignment(
     Variable(Identifier),
+    Eq,
     Call(Identifier,ArgList)
   )
 )
@@ -35,6 +37,7 @@ Recipe(
     Variable(Identifier),
     Variable(Identifier),
     Variable(Identifier),
+    Eq,
     Call(Identifier,ArgList)
   )
 )
