@@ -12,11 +12,9 @@ value[@isGroup=Value] { Variable | Call }
 
 Variable { Identifier }
 
-Eq { "=" }
+Alias { Variable "=" Variable }
 
-Alias { Variable Eq Variable }
-
-Assignment { Variable ("," Variable)* Eq Call }
+Assignment { Variable ("," Variable)* "=" Call }
 
 semi { ";" | omitSemi }
 
@@ -38,6 +36,8 @@ semi { ";" | omitSemi }
   word { identifierChar (identifierChar | std.digit)* }
 
   Identifier { word }
+
+  "="[@name=Eq]
 
   @precedence { Identifier, whitespace }
 
