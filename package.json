@@ -11,11 +11,11 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "dependencies": {
-    "lezer": "^0.13.4"
+    "@lezer/lr": "^0.15.5"
   },
   "devDependencies": {
+    "@lezer/generator": "^0.15.2",
     "@rollup/plugin-node-resolve": "^11.2.0",
-    "lezer-generator": "^0.13.3",
     "mocha": "^8.3.1",
     "rollup": "^2.41.1"
   },

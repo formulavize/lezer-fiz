@@ -16,12 +16,15 @@ Alias { Variable "=" Variable }
 
 Assignment { Variable ("," Variable)* "=" Call }
 
-semi { ";" | omitSemi }
+semi { ";" | insertSemi }
 
-@skip { whitespace | LineComment | BlockComment }
+@skip { spaces | newline | LineComment | BlockComment }
+
+@context trackNewline from "./tokens.js"
 
 @tokens {
-  whitespace { std.whitespace+ }
+  spaces[@export] { $[\u0009 \u000b\u00a0\u1680\u2000-\u200a\u202f\u205f\u3000\ufeff]+ }
+  newline[@export] { $[\r\n\u2028\u2029] }
 
   LineComment { "//" ![\n]* }
 
@@ -39,12 +42,12 @@ semi { ";" | omitSemi }
 
   "="[@name=Eq]
 
-  @precedence { Identifier, whitespace }
+  @precedence { spaces, newline, Identifier }
 
   "(" ")"
 
 }
 
-@external tokens omitSemicolon from "./tokens" { omitSemi }
+@external tokens insertSemicolon from "./tokens" { insertSemi }
 
 @detectDelim
