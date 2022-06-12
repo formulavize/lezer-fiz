@@ -80,3 +80,56 @@ Recipe(
     )
   )
 )
+
+
+# StyleTag Used
+
+f(){
+  #one #two
+}
+
+==>
+
+Recipe(
+  Call(
+    Identifier, ArgList,
+    StyleArgList(
+      StyleTag(Identifier),
+      StyleTag(Identifier)
+    )
+  )
+)
+
+# Empty StyleTag Declared
+
+#empty{}
+
+==>
+
+Recipe(
+  StyleTagDeclaration(
+    StyleTag(Identifier),
+    StyleArgList()
+  )
+)
+
+# Nested StyleTags
+
+#mystyle{
+  #a
+  x: "y"
+  #c
+}
+
+==>
+
+Recipe(
+  StyleTagDeclaration(
+    StyleTag(Identifier),
+    StyleArgList(
+      StyleTag(Identifier),
+      StyleDeclaration(Identifier, StringLiteral),
+      StyleTag(Identifier)
+    )
+  )
+)

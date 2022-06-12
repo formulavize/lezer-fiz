@@ -1,6 +1,6 @@
 @top Recipe { statement* }
 
-statement { ( Call | Alias | Assignment ) semi }
+statement { ( Call | Alias | Assignment | StyleTagDeclaration ) semi }
 
 Call { Identifier ArgList StyleArgList? }
 
@@ -24,7 +24,11 @@ styleValue { ColorLiteral | NumberLiteral | StringLiteral }
 
 StyleDeclaration { Identifier ":" styleValue (","? styleValue)* semi }
 
-StyleArgList { "{" StyleDeclaration* "}" }
+StyleTagDeclaration { StyleTag StyleArgList }
+
+StyleTag { "#" Identifier }
+
+StyleArgList { "{" (StyleDeclaration | StyleTag)* "}" }
 
 @skip { spaces | newline | LineComment | BlockComment }
 
