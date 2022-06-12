@@ -1,0 +1,82 @@
+# Empty Call StyleArgList
+
+f(){}
+
+==>
+
+Recipe(
+  Call(Identifier,ArgList,StyleArgList)
+)
+
+# Empty Variable StyleArgList
+
+x{ } = f()
+
+==>
+
+Recipe(
+  Assignment(
+    Variable(Identifier), StyleArgList,
+    Eq,
+    Call(Identifier,ArgList)
+  )
+)
+
+# Style StringLiteral ending with }
+
+f(){num: "abc"}
+
+==>
+
+Recipe(
+  Call(
+    Identifier, ArgList,
+    StyleArgList(StyleDeclaration(Identifier, StringLiteral))
+  )
+)
+
+# Style ColorLiteral ending with ;
+
+f(){
+  color: #1234;
+  color: #7f7f7f;
+}
+
+==>
+
+Recipe(
+  Call(
+    Identifier, ArgList,
+    StyleArgList(
+      StyleDeclaration(Identifier, ColorLiteral),
+      StyleDeclaration(Identifier, ColorLiteral)
+    )
+  )
+)
+
+# Style NumberLiteral ending with newlines
+
+f(){
+  a: 123
+  b: 1.2%
+  c: 3em
+  margin: 10E2px
+  margin: -456.7px
+  margin: -0.0px
+}
+
+==>
+
+Recipe(
+  Call(
+    Identifier, ArgList,
+    StyleArgList(
+      StyleDeclaration(Identifier, NumberLiteral),
+      StyleDeclaration(Identifier, NumberLiteral(Unit)),
+      StyleDeclaration(Identifier, NumberLiteral(Unit)),
+      StyleDeclaration(Identifier, NumberLiteral(Unit)),
+      StyleDeclaration(Identifier, NumberLiteral(Unit)),
+      StyleDeclaration(Identifier, NumberLiteral(Unit))
+    )
+  )
+)

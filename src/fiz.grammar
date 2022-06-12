@@ -1,26 +1,36 @@
-@top Recipe { fullStatement* }
+@top Recipe { statement* }
 
-fullStatement { statement semi }
+statement { ( Call | Alias | Assignment ) semi }
 
-statement[@isGroup=Statement] { Call | Alias | Assignment }
+Call { Identifier ArgList StyleArgList? }
 
 ArgList { "(" ( value ("," value)* )? ")" }
-
-Call { Identifier ArgList }
 
 value[@isGroup=Value] { Variable | Call }
 
 Variable { Identifier }
 
-Alias { Variable "=" Variable }
+Alias { lhsVariable "=" Variable }
 
-Assignment { Variable ("," Variable)* "=" Call }
+Assignment { lhsVariable ("," lhsVariable)* "=" Call }
 
 semi { ";" | insertSemi }
+
+NumberLiteral { numberLiteralInner Unit? }
+
+lhsVariable { Variable StyleArgList? }
+
+styleValue { ColorLiteral | NumberLiteral | StringLiteral }
+
+StyleDeclaration { Identifier ":" styleValue (","? styleValue)* semi }
+
+StyleArgList { "{" StyleDeclaration* "}" }
 
 @skip { spaces | newline | LineComment | BlockComment }
 
 @context trackNewline from "./tokens.js"
+
+@external tokens unitToken from "./tokens" { Unit }
 
 @tokens {
   spaces[@export] { $[\u0009 \u000b\u00a0\u1680\u2000-\u200a\u202f\u205f\u3000\ufeff]+ }
@@ -40,11 +50,23 @@ semi { ";" | insertSemi }
 
   Identifier { word }
 
+  hexDigit { std.digit | $[a-fA-F] }
+
+  ColorLiteral { "#" hexDigit hexDigit hexDigit (hexDigit (hexDigit hexDigit (hexDigit hexDigit)?)?)? }
+
+  numberLiteralInner { ("+" | "-")? (std.digit+ ("." std.digit*)? | "." std.digit+) (("e" | "E") ("+" | "-")? std.digit+)? }
+
+  StringLiteral { "\"" (!["\n\\] | "\\" _)* "\"" | "'" (!['\n\\] | "\\" _)* "'" }
+
   "="[@name=Eq]
 
   @precedence { spaces, newline, Identifier }
 
-  "(" ")"
+  "#"
+
+  ":"
+
+  "(" ")" "{" "}"
 
 }
 
