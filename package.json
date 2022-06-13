@@ -11,6 +11,7 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "dependencies": {
+    "@lezer/highlight": "^1.0.0",
     "@lezer/lr": "^1.0.0"
   },
   "devDependencies": {

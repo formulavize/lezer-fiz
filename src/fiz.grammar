@@ -76,4 +76,6 @@ StyleArgList { "{" (StyleDeclaration | StyleTag)* "}" }
 
 @external tokens insertSemicolon from "./tokens" { insertSemi }
 
+@external propSource fizHighlighting from "./highlight"
+
 @detectDelim
