@@ -20,7 +20,7 @@ NumberLiteral { numberLiteralInner Unit? }
 
 lhsVariable { Variable StyleArgList? }
 
-styleValue { ColorLiteral | NumberLiteral | StringLiteral }
+styleValue[@isGroup=StyleValue] { ColorLiteral | NumberLiteral | StringLiteral }
 
 StyleDeclaration { Identifier ":" styleValue (","? styleValue)* semi }
 
