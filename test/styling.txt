@@ -22,6 +22,35 @@ Recipe(
   )
 )
 
+# Styled and Unstyled Unpacked Assignment
+
+x{}, y{} = z()
+a{}, b = c()
+i, j{} = k()
+
+==>
+
+Recipe(
+  Assignment(
+    Variable(Identifier), StyleArgList,
+    Variable(Identifier), StyleArgList,
+    Eq,
+    Call(Identifier,ArgList)
+  )
+  Assignment(
+    Variable(Identifier), StyleArgList,
+    Variable(Identifier),
+    Eq,
+    Call(Identifier,ArgList)
+  )
+  Assignment(
+    Variable(Identifier),
+    Variable(Identifier), StyleArgList,
+    Eq,
+    Call(Identifier,ArgList)
+  )
+)
+
 # Style StringLiteral ending with }
 
 f(){num: "abc"}
