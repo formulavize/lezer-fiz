@@ -16,13 +16,19 @@ Assignment { lhsVariable ("," lhsVariable)* "=" Call }
 
 semi { ";" | insertSemi }
 
+lhsVariable { Variable StyleArgList? }
+
 NumberLiteral { numberLiteralInner Unit? }
 
-lhsVariable { Variable StyleArgList? }
+// StyleValueName { cssIdentifier }
+/* Tombstone: Adding StyleValueName to styleValue breaks NumberLiteral
+unless we decide to make ';' mandatory in StyleDeclaration */
+
+PropertyName { cssIdentifier }
 
 styleValue[@isGroup=StyleValue] { ColorLiteral | NumberLiteral | StringLiteral }
 
-StyleDeclaration { Identifier ":" styleValue (","? styleValue)* semi }
+StyleDeclaration { PropertyName ":" styleValue (","? styleValue)* semi }
 
 StyleTagDeclaration { StyleTag StyleArgList }
 
@@ -35,6 +41,8 @@ StyleArgList { "{" (StyleDeclaration | StyleTag)* "}" }
 @context trackNewline from "./tokens.js"
 
 @external tokens unitToken from "./tokens" { Unit }
+
+@external tokens cssIdentifierToken from "./tokens" { cssIdentifier }
 
 @tokens {
   spaces[@export] { $[\u0009 \u000b\u00a0\u1680\u2000-\u200a\u202f\u205f\u3000\ufeff]+ }

@@ -31,7 +31,7 @@ f(){num: "abc"}
 Recipe(
   Call(
     Identifier, ArgList,
-    StyleArgList(StyleDeclaration(Identifier, StringLiteral))
+    StyleArgList(StyleDeclaration(PropertyName, StringLiteral))
   )
 )
 
@@ -48,8 +48,8 @@ Recipe(
   Call(
     Identifier, ArgList,
     StyleArgList(
-      StyleDeclaration(Identifier, ColorLiteral),
-      StyleDeclaration(Identifier, ColorLiteral)
+      StyleDeclaration(PropertyName, ColorLiteral),
+      StyleDeclaration(PropertyName, ColorLiteral)
     )
   )
 )
@@ -71,12 +71,12 @@ Recipe(
   Call(
     Identifier, ArgList,
     StyleArgList(
-      StyleDeclaration(Identifier, NumberLiteral),
-      StyleDeclaration(Identifier, NumberLiteral(Unit)),
-      StyleDeclaration(Identifier, NumberLiteral(Unit)),
-      StyleDeclaration(Identifier, NumberLiteral(Unit)),
-      StyleDeclaration(Identifier, NumberLiteral(Unit)),
-      StyleDeclaration(Identifier, NumberLiteral(Unit))
+      StyleDeclaration(PropertyName, NumberLiteral),
+      StyleDeclaration(PropertyName, NumberLiteral(Unit)),
+      StyleDeclaration(PropertyName, NumberLiteral(Unit)),
+      StyleDeclaration(PropertyName, NumberLiteral(Unit)),
+      StyleDeclaration(PropertyName, NumberLiteral(Unit)),
+      StyleDeclaration(PropertyName, NumberLiteral(Unit))
     )
   )
 )
@@ -128,8 +128,33 @@ Recipe(
     StyleTag(Identifier),
     StyleArgList(
       StyleTag(Identifier),
-      StyleDeclaration(Identifier, StringLiteral),
+      StyleDeclaration(PropertyName, StringLiteral),
       StyleTag(Identifier)
+    )
+  )
+)
+
+# PropertyName Cases
+
+#cases{
+  snek_case: "hiss"
+  kebab-case: "🍢"
+  camelCase: "has 1 hump"
+  PascalCase: "has 2 humps"
+  LOUD_SNEK_CASE: "HISS!"
+}
+
+==>
+
+Recipe(
+  StyleTagDeclaration(
+    StyleTag(Identifier),
+    StyleArgList(
+      StyleDeclaration(PropertyName, StringLiteral),
+      StyleDeclaration(PropertyName, StringLiteral),
+      StyleDeclaration(PropertyName, StringLiteral),
+      StyleDeclaration(PropertyName, StringLiteral),
+      StyleDeclaration(PropertyName, StringLiteral),
     )
   )
 )

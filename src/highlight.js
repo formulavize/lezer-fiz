@@ -5,6 +5,7 @@ export const fizHighlighting = styleTags({
   Call: t.function(t.variableName),
   LineComment: t.lineComment,
   BlockComment: t.blockComment,
+  PropertyName: t.propertyName,
   NumberLiteral: t.number,
   StringLiteral: t.string,
   ColorLiteral: t.color,
