@@ -6,7 +6,7 @@ x = y
 
 Recipe(
   Alias(
-    Variable(Identifier),
+    LhsVariable(Variable(Identifier)),
     Eq,
     Variable(Identifier)
   )
@@ -20,7 +20,7 @@ foo = f()
 
 Recipe(
   Assignment(
-    Variable(Identifier),
+    LhsVariable(Variable(Identifier)),
     Eq,
     Call(Identifier,ArgList)
   )
@@ -34,9 +34,9 @@ a, b, c = g()
 
 Recipe(
   Assignment(
-    Variable(Identifier),
-    Variable(Identifier),
-    Variable(Identifier),
+    LhsVariable(Variable(Identifier)),
+    LhsVariable(Variable(Identifier)),
+    LhsVariable(Variable(Identifier)),
     Eq,
     Call(Identifier,ArgList)
   )

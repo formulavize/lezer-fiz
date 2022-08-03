@@ -10,13 +10,13 @@ value[@isGroup=Value] { Variable | Call }
 
 Variable { Identifier }
 
-Alias { lhsVariable "=" Variable }
+Alias { LhsVariable "=" Variable }
 
-Assignment { lhsVariable ("," lhsVariable)* "=" Call }
+Assignment { LhsVariable ("," LhsVariable)* "=" Call }
 
 semi { ";" | insertSemi }
 
-lhsVariable { Variable StyleArgList? }
+LhsVariable { Variable StyleArgList? }
 
 NumberLiteral { numberLiteralInner Unit? }
 
