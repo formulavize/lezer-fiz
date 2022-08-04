@@ -163,6 +163,31 @@ Recipe(
   )
 )
 
+# StyleMap Value List
+
+#mystyle{
+  a:1,2
+  b:3px 4 #123 "text"
+}
+
+==>
+
+Recipe(
+  StyleTagDeclaration(
+    StyleTag(Identifier),
+    StyleArgList(
+      StyleDeclaration(PropertyName, NumberLiteral, NumberLiteral)
+      StyleDeclaration(
+        PropertyName,
+        NumberLiteral(Unit),
+        NumberLiteral,
+        ColorLiteral,
+        StringLiteral
+      )
+    )
+  )
+)
+
 # PropertyName Cases
 
 #cases{
