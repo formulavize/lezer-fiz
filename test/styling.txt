@@ -1,0 +1,214 @@
+# Empty Call StyleArgList
+
+f(){}
+
+==>
+
+Recipe(
+  Call(Identifier,ArgList,StyleArgList)
+)
+
+# Empty Variable StyleArgList
+
+x{ } = f()
+
+==>
+
+Recipe(
+  Assignment(
+    LhsVariable(Variable(Identifier), StyleArgList),
+    Eq,
+    Call(Identifier,ArgList)
+  )
+)
+
+# Styled and Unstyled Unpacked Assignment
+
+x{}, y{} = z()
+a{}, b = c()
+i, j{} = k()
+
+==>
+
+Recipe(
+  Assignment(
+    LhsVariable(Variable(Identifier), StyleArgList),
+    LhsVariable(Variable(Identifier), StyleArgList),
+    Eq,
+    Call(Identifier,ArgList)
+  )
+  Assignment(
+    LhsVariable(Variable(Identifier), StyleArgList),
+    LhsVariable(Variable(Identifier)),
+    Eq,
+    Call(Identifier,ArgList)
+  )
+  Assignment(
+    LhsVariable(Variable(Identifier)),
+    LhsVariable(Variable(Identifier), StyleArgList),
+    Eq,
+    Call(Identifier,ArgList)
+  )
+)
+
+# Style StringLiteral ending with }
+
+f(){num: "abc"}
+
+==>
+
+Recipe(
+  Call(
+    Identifier, ArgList,
+    StyleArgList(StyleDeclaration(PropertyName, StringLiteral))
+  )
+)
+
+# Style ColorLiteral ending with ;
+
+f(){
+  color: #1234;
+  color: #7f7f7f;
+}
+
+==>
+
+Recipe(
+  Call(
+    Identifier, ArgList,
+    StyleArgList(
+      StyleDeclaration(PropertyName, ColorLiteral),
+      StyleDeclaration(PropertyName, ColorLiteral)
+    )
+  )
+)
+
+# Style NumberLiteral ending with newlines
+
+f(){
+  a: 123
+  b: 1.2%
+  c: 3em
+  margin: 10E2px
+  margin: -456.7px
+  margin: -0.0px
+}
+
+==>
+
+Recipe(
+  Call(
+    Identifier, ArgList,
+    StyleArgList(
+      StyleDeclaration(PropertyName, NumberLiteral),
+      StyleDeclaration(PropertyName, NumberLiteral(Unit)),
+      StyleDeclaration(PropertyName, NumberLiteral(Unit)),
+      StyleDeclaration(PropertyName, NumberLiteral(Unit)),
+      StyleDeclaration(PropertyName, NumberLiteral(Unit)),
+      StyleDeclaration(PropertyName, NumberLiteral(Unit))
+    )
+  )
+)
+
+
+# StyleTag Used
+
+f(){
+  #one #two
+}
+
+==>
+
+Recipe(
+  Call(
+    Identifier, ArgList,
+    StyleArgList(
+      StyleTag(Identifier),
+      StyleTag(Identifier)
+    )
+  )
+)
+
+# Empty StyleTag Declared
+
+#empty{}
+
+==>
+
+Recipe(
+  StyleTagDeclaration(
+    StyleTag(Identifier),
+    StyleArgList()
+  )
+)
+
+# Nested StyleTags
+
+#mystyle{
+  #a
+  x: "y"
+  #c
+}
+
+==>
+
+Recipe(
+  StyleTagDeclaration(
+    StyleTag(Identifier),
+    StyleArgList(
+      StyleTag(Identifier),
+      StyleDeclaration(PropertyName, StringLiteral),
+      StyleTag(Identifier)
+    )
+  )
+)
+
+# StyleMap Value List
+
+#mystyle{
+  a:1,2
+  b:3px 4 #123 "text"
+}
+
+==>
+
+Recipe(
+  StyleTagDeclaration(
+    StyleTag(Identifier),
+    StyleArgList(
+      StyleDeclaration(PropertyName, NumberLiteral, NumberLiteral)
+      StyleDeclaration(
+        PropertyName,
+        NumberLiteral(Unit),
+        NumberLiteral,
+        ColorLiteral,
+        StringLiteral
+      )
+    )
+  )
+)
+
+# PropertyName Cases
+
+#cases{
+  snek_case: "hiss"
+  kebab-case: "🍢"
+  camelCase: "has 1 hump"
+  PascalCase: "has 2 humps"
+  LOUD_SNEK_CASE: "HISS!"
+}
+
+==>
+
+Recipe(
+  StyleTagDeclaration(
+    StyleTag(Identifier),
+    StyleArgList(
+      StyleDeclaration(PropertyName, StringLiteral),
+      StyleDeclaration(PropertyName, StringLiteral),
+      StyleDeclaration(PropertyName, StringLiteral),
+      StyleDeclaration(PropertyName, StringLiteral),
+      StyleDeclaration(PropertyName, StringLiteral),
+    )
+  )
+)

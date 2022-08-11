@@ -14,8 +14,8 @@ z = y
 ==>
 
 Recipe(
-  Alias(Variable, Variable),
-  Alias(Variable, Variable)
+  Alias(LhsVariable(Variable(Identifier)), Eq, Variable(Identifier)),
+  Alias(LhsVariable(Variable(Identifier)), Eq, Variable(Identifier))
 )
 
 # Mixed Statements
@@ -27,9 +27,13 @@ g()
 ==>
 
 Recipe(
-  Assignment(Variable, Call(Variable))
-  Alias(Variable,Variable),
-  Call()
+  Assignment(
+    LhsVariable(Variable(Identifier)),
+    Eq,
+    Call(Identifier,ArgList(Variable(Identifier)))
+  )
+  Alias(LhsVariable(Variable(Identifier)), Eq, Variable(Identifier)),
+  Call(Identifier,ArgList)
 )
 
 # Line Comment
@@ -70,11 +74,15 @@ g()
 
 Recipe(
   LineComment
-  Assignment(Variable, Call(Variable))
+  Assignment(
+    LhsVariable(Variable(Identifier)),
+    Eq,
+    Call(Identifier,ArgList(Variable(Identifier)))
+  )
   BlockComment
-  Alias(Variable,Variable),
+  Alias(LhsVariable(Variable(Identifier)), Eq, Variable(Identifier)),
   BlockComment
-  Call()
+  Call(Identifier,ArgList)
 )
 
 # Semicolons
@@ -86,9 +94,13 @@ g();
 ==>
 
 Recipe(
-  Assignment(Variable, Call(Variable))
-  Alias(Variable,Variable),
-  Call()
+  Assignment(
+    LhsVariable(Variable(Identifier)),
+    Eq,
+    Call(Identifier,ArgList(Variable(Identifier)))
+  )
+  Alias(LhsVariable(Variable(Identifier)), Eq, Variable(Identifier)),
+  Call(Identifier,ArgList)
 )
 
 # Semicolons Same Line
@@ -98,9 +110,13 @@ a=b();f();x=y;
 ==>
 
 Recipe(
-  Assignment(Variable, Call()),
-  Call(),
-  Alias(Variable, Variable)
+  Assignment(
+    LhsVariable(Variable(Identifier)),
+    Eq,
+    Call(Identifier,ArgList)
+  ),
+  Call(Identifier,ArgList),
+  Alias(LhsVariable(Variable(Identifier)), Eq, Variable(Identifier))
 )
 
 # Semicolon Same Line Divider
@@ -114,8 +130,16 @@ y = f(
 ==>
 
 Recipe(
-  Assignment(Variable, Call(Variable, Variable, Variable)),
-  Alias(Variable, Variable)
+  Assignment(
+    LhsVariable(Variable(Identifier)),
+    Eq,
+    Call(Identifier,ArgList(
+      Variable(Identifier),
+      Variable(Identifier),
+      Variable(Identifier)
+    ))
+  ),
+  Alias(LhsVariable(Variable(Identifier)), Eq, Variable(Identifier))
 )
 
 # Diagram
@@ -131,13 +155,29 @@ Recipe(
 ==>
 
 Recipe(
-  Assignment(Variable, Call(Variable)),
-  Assignment(Variable, Call(Variable)),
+  Assignment(
+    LhsVariable(Variable(Identifier)),
+    Eq,
+    Call(Identifier,ArgList(Variable(Identifier)))
+  ),
+  Assignment(
+    LhsVariable(Variable(Identifier)),
+    Eq,
+    Call(Identifier,ArgList(Variable(Identifier)))
+  ),
   LineComment,
-  Assignment(Variable, Call(Variable)),
-  Assignment(Variable, Call(Variable)),
+  Assignment(
+    LhsVariable(Variable(Identifier)),
+    Eq,
+    Call(Identifier,ArgList(Variable(Identifier)))
+  ),
+  Assignment(
+    LhsVariable(Variable(Identifier)),
+    Eq,
+    Call(Identifier,ArgList(Variable(Identifier)))
+  ),
   LineComment,
   LineComment,
   LineComment,
-  Call(Variable, Variable)
+  Call(Identifier,ArgList(Variable(Identifier), Variable(Identifier)))
 )

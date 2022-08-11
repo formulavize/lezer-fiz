@@ -1,25 +1,52 @@
-@top Recipe { fullStatement* }
+@top Recipe { statement* }
 
-fullStatement { statement semi }
+statement { ( Call | Alias | Assignment | StyleTagDeclaration ) semi }
 
-statement { Call | Alias | Assignment }
+Call { Identifier ArgList StyleArgList? }
 
-Call { identifier "(" ( value ("," value)* )? ")" }
+ArgList { "(" ( value ("," value)* )? ")" }
 
-value { Variable | Call }
+value[@isGroup=Value] { Variable | Call }
 
-Variable { identifier }
+Variable { Identifier }
 
-Alias { Variable "=" Variable }
+Alias { LhsVariable "=" Variable }
 
-Assignment { Variable ("," Variable)* "=" Call }
+Assignment { LhsVariable ("," LhsVariable)* "=" Call }
 
-semi { ";" | omitSemi }
+semi { ";" | insertSemi }
 
-@skip { whitespace | LineComment | BlockComment }
+LhsVariable { Variable StyleArgList? }
+
+NumberLiteral { numberLiteralInner Unit? }
+
+// StyleValueName { cssIdentifier }
+/* Tombstone: Adding StyleValueName to styleValue breaks NumberLiteral
+unless we decide to make ';' mandatory in StyleDeclaration */
+
+PropertyName { cssIdentifier }
+
+styleValue[@isGroup=StyleValue] { ColorLiteral | NumberLiteral | StringLiteral }
+
+StyleDeclaration { PropertyName ":" styleValue (","? styleValue)* semi }
+
+StyleTagDeclaration { StyleTag StyleArgList }
+
+StyleTag { "#" Identifier }
+
+StyleArgList { "{" (StyleDeclaration | StyleTag)* "}" }
+
+@skip { spaces | newline | LineComment | BlockComment }
+
+@context trackNewline from "./tokens.js"
+
+@external tokens unitToken from "./tokens" { Unit }
+
+@external tokens cssIdentifierToken from "./tokens" { cssIdentifier }
 
 @tokens {
-  whitespace { std.whitespace+ }
+  spaces[@export] { $[\u0009 \u000b\u00a0\u1680\u2000-\u200a\u202f\u205f\u3000\ufeff]+ }
+  newline[@export] { $[\r\n\u2028\u2029] }
 
   LineComment { "//" ![\n]* }
 
@@ -33,12 +60,30 @@ semi { ";" | omitSemi }
 
   word { identifierChar (identifierChar | std.digit)* }
 
-  identifier { word }
+  Identifier { word }
 
-  @precedence { identifier, whitespace }
+  hexDigit { std.digit | $[a-fA-F] }
+
+  ColorLiteral { "#" hexDigit hexDigit hexDigit (hexDigit (hexDigit hexDigit (hexDigit hexDigit)?)?)? }
+
+  numberLiteralInner { ("+" | "-")? (std.digit+ ("." std.digit*)? | "." std.digit+) (("e" | "E") ("+" | "-")? std.digit+)? }
+
+  StringLiteral { "\"" (!["\n\\] | "\\" _)* "\"" | "'" (!['\n\\] | "\\" _)* "'" }
+
+  "="[@name=Eq]
+
+  @precedence { spaces, newline, Identifier }
+
+  "#"
+
+  ":"
+
+  "(" ")" "{" "}"
 
 }
 
-@external tokens omitSemicolon from "./tokens" { omitSemi }
+@external tokens insertSemicolon from "./tokens" { insertSemi }
+
+@external propSource fizHighlighting from "./highlight"
 
 @detectDelim
