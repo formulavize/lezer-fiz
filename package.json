@@ -1,5 +1,5 @@
 {
-  "name": "lezer-fiz",
+  "name": "@formulavize/lezer-fiz",
   "version": "0.1.0",
   "description": "fiz grammar for lezer",
   "main": "dist/index.cjs",
@@ -28,9 +28,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anthologen/lezer-fiz.git"
+    "url": "git+https://github.com/formulavize/lezer-fiz.git"
   },
   "author": "anthologen",
   "license": "MIT",
-  "homepage": "https://github.com/anthologen/lezer-fiz#readme"
+  "homepage": "https://github.com/formulavize/lezer-fiz#readme"
 }
