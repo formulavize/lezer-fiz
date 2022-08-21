@@ -212,3 +212,23 @@ Recipe(
     )
   )
 )
+
+# Style Binding
+
+%a{}
+%b{
+  #x #y
+}
+
+==>
+
+Recipe(
+  StyleBinding(Identifier, StyleTagList())
+  StyleBinding(
+    Identifier,
+    StyleTagList(
+      StyleTag(Identifier)
+      StyleTag(Identifier),
+    )
+  )
+)

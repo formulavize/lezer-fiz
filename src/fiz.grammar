@@ -1,6 +1,6 @@
 @top Recipe { statement* }
 
-statement { ( Call | Alias | Assignment | StyleTagDeclaration ) semi }
+statement { ( Call | Alias | Assignment | StyleTagDeclaration | StyleBinding ) semi }
 
 Call { Identifier ArgList StyleArgList? }
 
@@ -35,6 +35,14 @@ StyleTagDeclaration { StyleTag StyleArgList }
 StyleTag { "#" Identifier }
 
 StyleArgList { "{" (StyleDeclaration | StyleTag)* "}" }
+
+/* Only StyleTags are allowed in StyleBindings
+Although disallowing StyleDeclarations is inconsistent with other curly brackets
+(i.e. StyleArgList), this forces StyleBinding users to define StyleTags
+that can be reused by others */
+StyleTagList { "{" StyleTag* "}" }
+
+StyleBinding { "%" Identifier StyleTagList }
 
 @skip { spaces | newline | LineComment | BlockComment }
 
@@ -77,6 +85,8 @@ StyleArgList { "{" (StyleDeclaration | StyleTag)* "}" }
   "#"
 
   ":"
+
+  "%"
 
   "(" ")" "{" "}"
 
