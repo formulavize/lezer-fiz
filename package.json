@@ -12,13 +12,13 @@
   "types": "dist/index.d.ts",
   "dependencies": {
     "@lezer/highlight": "^1.0.0",
-    "@lezer/lr": "^1.0.0"
+    "@lezer/lr": "^1.2.3"
   },
   "devDependencies": {
-    "@lezer/generator": "^1.0.0",
+    "@lezer/generator": "^1.1.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "mocha": "^10.0.0",
-    "rollup": "^2.75.6"
+    "rollup": "^2.78.1"
   },
   "scripts": {
     "build": "lezer-generator src/fiz.grammar -o src/parser && rollup -c",
