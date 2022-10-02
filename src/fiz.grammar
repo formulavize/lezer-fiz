@@ -28,13 +28,13 @@ PropertyName { cssIdentifier }
 
 styleValue[@isGroup=StyleValue] { ColorLiteral | NumberLiteral | StringLiteral }
 
-StyleDeclaration { PropertyName ":" styleValue (","? styleValue)* semi }
+StyleDeclaration { PropertyName ":" styleValue ("," styleValue)* semi }
 
 StyleTagDeclaration { StyleTag StyleArgList }
 
 StyleTag { "#" Identifier }
 
-StyleArgList { "{" (StyleDeclaration | StyleTag)* "}" }
+StyleArgList { "{" (StyleDeclaration | StyleTag | StringLiteral)* "}" }
 
 /* Only StyleTags are allowed in StyleBindings
 Although disallowing StyleDeclarations is inconsistent with other curly brackets

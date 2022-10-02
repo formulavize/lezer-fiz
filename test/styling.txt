@@ -167,7 +167,7 @@ Recipe(
 
 #mystyle{
   a:1,2
-  b:3px 4 #123 "text"
+  b:3px, 4, #123, "text"
 }
 
 ==>
@@ -229,6 +229,26 @@ Recipe(
     StyleTagList(
       StyleTag(Identifier)
       StyleTag(Identifier),
+    )
+  )
+)
+
+# Description Shortcut
+
+#a{
+  test: "string"
+  "description"
+  'shortcut'
+}
+==>
+
+Recipe(
+  StyleTagDeclaration(
+    StyleTag(Identifier),
+    StyleArgList(
+      StyleDeclaration(PropertyName, StringLiteral),
+      StringLiteral,
+      StringLiteral,
     )
   )
 )
