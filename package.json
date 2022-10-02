@@ -1,6 +1,6 @@
 {
   "name": "@formulavize/lezer-fiz",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "fiz grammar for lezer",
   "main": "dist/index.cjs",
   "type": "module",
@@ -11,14 +11,14 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@lezer/highlight": "^1.0.0",
+    "@lezer/highlight": "^1.1.1",
     "@lezer/lr": "^1.2.3"
   },
   "devDependencies": {
     "@lezer/generator": "^1.1.1",
-    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-node-resolve": "^14.1.0",
     "mocha": "^10.0.0",
-    "rollup": "^2.78.1"
+    "rollup": "^2.79.1"
   },
   "scripts": {
     "build": "lezer-generator src/fiz.grammar -o src/parser && rollup -c",
