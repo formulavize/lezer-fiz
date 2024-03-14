@@ -1,4 +1,4 @@
-import {styleTags, tags as t} from "@lezer/highlight"
+import { styleTags, tags as t } from "@lezer/highlight";
 
 export const fizHighlighting = styleTags({
   Variable: t.variableName,
@@ -15,4 +15,4 @@ export const fizHighlighting = styleTags({
   "{ }": t.brace,
   ":": t.punctuation,
   ", ;": t.separator,
-})
+});
