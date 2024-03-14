@@ -11,14 +11,14 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@lezer/highlight": "^1.1.1",
-    "@lezer/lr": "^1.2.3"
+    "@lezer/highlight": "^1.2.0",
+    "@lezer/lr": "^1.4.0"
   },
   "devDependencies": {
-    "@lezer/generator": "^1.1.1",
-    "@rollup/plugin-node-resolve": "^14.1.0",
-    "mocha": "^10.0.0",
-    "rollup": "^2.79.1"
+    "@lezer/generator": "^1.6.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "mocha": "^10.3.0",
+    "rollup": "^4.12.1"
   },
   "scripts": {
     "build": "lezer-generator src/fiz.grammar -o src/parser && rollup -c",
