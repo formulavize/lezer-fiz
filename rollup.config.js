@@ -1,4 +1,4 @@
-import { nodeResolve } from "@rollup/plugin-node-resolve"
+import { lezer } from "@lezer/generator/rollup"
 
 export default {
   input: "./src/parser.js",
@@ -13,6 +13,6 @@ export default {
     return !/^[\.\/]/.test(id)
   },
   plugins: [
-    nodeResolve()
+    lezer()
   ]
 }

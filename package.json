@@ -21,9 +21,7 @@
     "rollup": "^4.12.1"
   },
   "scripts": {
-    "build": "lezer-generator src/fiz.grammar -o src/parser && rollup -c",
-    "build-debug": "lezer-generator src/fiz.grammar --names -o src/parser && rollup -c",
-    "prepare": "npm run build",
+    "build": "rollup -c",
     "test": "npm run build && mocha test/test-fiz.js"
   },
   "repository": {
