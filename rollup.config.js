@@ -1,7 +1,7 @@
 import { lezer } from "@lezer/generator/rollup";
 
 export default {
-  input: "./src/parser.js",
+  input: "./src/fiz.grammar",
   output: [
     {
       format: "cjs",
