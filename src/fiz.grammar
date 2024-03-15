@@ -1,6 +1,6 @@
 @top Recipe { statement* }
 
-statement { ( Call | Alias | Assignment | StyleTagDeclaration | StyleBinding ) semi }
+statement { ( Call | Alias | Assignment | StyleTagDeclaration | StyleBinding | Namespace ) semi }
 
 Call { Identifier ArgList StyleArgList? }
 
@@ -43,6 +43,8 @@ that can be reused by others */
 StyleTagList { "{" StyleTag* "}" }
 
 StyleBinding { "%" Identifier StyleTagList }
+
+Namespace { Identifier? "[" statement* "]" ArgList? StyleArgList? }
 
 @skip { spaces | newline | LineComment | BlockComment }
 
@@ -88,7 +90,7 @@ StyleBinding { "%" Identifier StyleTagList }
 
   "%"
 
-  "(" ")" "{" "}"
+  "(" ")" "{" "}" "[" "]"
 
 }
 

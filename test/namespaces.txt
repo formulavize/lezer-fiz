@@ -1,0 +1,164 @@
+# Empty Anonymous Namespace
+
+[]
+
+==>
+
+Recipe(
+  Namespace()
+)
+
+# Empty Named Namespace
+
+n[]
+
+==>
+
+Recipe(
+  Namespace(Identifier)
+)
+
+# Call in Namespace
+
+[
+  f()
+]
+
+==>
+
+Recipe(
+  Namespace(Call(Identifier,ArgList))
+)
+
+# Alias in Namespace
+
+[
+  y = x
+]
+
+==>
+
+Recipe(
+  Namespace(
+    Alias(LhsVariable(Variable(Identifier)), Eq, Variable(Identifier))
+  )
+)
+
+# Assignment in Namespace
+
+[
+  y = f(x)
+]
+
+==>
+
+Recipe(
+  Namespace(
+    Assignment(
+    LhsVariable(Variable(Identifier)),
+    Eq,
+    Call(Identifier,ArgList(Variable(Identifier)))
+  )
+  )
+)
+
+# StyleTagDeclaration in Namespace
+
+[
+  #empty{}
+]
+
+==>
+
+Recipe(
+  Namespace(
+    StyleTagDeclaration(
+      StyleTag(Identifier),
+      StyleArgList
+    )
+  )
+)
+
+# StyleBinding in Namespace
+
+[
+  %s{}
+]
+
+==>
+
+Recipe(
+  Namespace(
+    StyleBinding(Identifier, StyleTagList())
+  )
+)
+
+# Nested Namespaces
+
+a[
+  []
+  b[]
+]
+
+==>
+
+Recipe(
+  Namespace(
+    Identifier,
+    Namespace(),
+    Namespace(Identifier)
+  )
+)
+
+# Comments in Namespace
+
+[
+  // comment
+  /* comment */
+]
+
+==>
+
+Recipe(
+  Namespace(
+    LineComment,
+    BlockComment
+  )
+)
+
+# Namespace with ArgList
+
+[]()
+
+==>
+
+Recipe(
+  Namespace(
+    ArgList
+  )
+)
+
+# Namespace with StyleArgList
+
+[]{}
+
+==>
+
+Recipe(
+  Namespace(
+    StyleArgList
+  )
+)
+
+# Namespace with ArgList and StyleArgList
+
+[](){}
+
+==>
+
+Recipe(
+  Namespace(
+    ArgList,
+    StyleArgList
+  )
+)
