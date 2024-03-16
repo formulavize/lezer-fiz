@@ -16,7 +16,7 @@ x{ } = f()
 
 Recipe(
   Assignment(
-    LhsVariable(Variable(Identifier), StyleArgList),
+    LhsVariable(Identifier, StyleArgList),
     Eq,
     Call(QualifiableIdentifier(Identifier), ArgList)
   )
@@ -32,20 +32,20 @@ i, j{} = k()
 
 Recipe(
   Assignment(
-    LhsVariable(Variable(Identifier), StyleArgList),
-    LhsVariable(Variable(Identifier), StyleArgList),
+    LhsVariable(Identifier, StyleArgList),
+    LhsVariable(Identifier, StyleArgList),
     Eq,
     Call(QualifiableIdentifier(Identifier), ArgList)
   )
   Assignment(
-    LhsVariable(Variable(Identifier), StyleArgList),
-    LhsVariable(Variable(Identifier)),
+    LhsVariable(Identifier, StyleArgList),
+    LhsVariable(Identifier),
     Eq,
     Call(QualifiableIdentifier(Identifier), ArgList)
   )
   Assignment(
-    LhsVariable(Variable(Identifier)),
-    LhsVariable(Variable(Identifier), StyleArgList),
+    LhsVariable(Identifier),
+    LhsVariable(Identifier, StyleArgList),
     Eq,
     Call(QualifiableIdentifier(Identifier), ArgList)
   )

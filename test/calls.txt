@@ -16,7 +16,7 @@ f( x )
 
 Recipe(
   Call(QualifiableIdentifier(Identifier), ArgList(
-    Variable(Identifier)
+    RhsVariable(QualifiableIdentifier(Identifier))
   ))
 )
 
@@ -28,8 +28,8 @@ f(x,y)
 
 Recipe(
   Call(QualifiableIdentifier(Identifier), ArgList(
-    Variable(Identifier),
-    Variable(Identifier)
+    RhsVariable(QualifiableIdentifier(Identifier)),
+    RhsVariable(QualifiableIdentifier(Identifier))
   ))
 )
 
@@ -43,9 +43,9 @@ Recipe(
   Call(
     QualifiableIdentifier(Identifier),
     ArgList(
-      Variable(Identifier),
-      Variable(Identifier),
-      Variable(Identifier)
+      RhsVariable(QualifiableIdentifier(Identifier)),
+      RhsVariable(QualifiableIdentifier(Identifier)),
+      RhsVariable(QualifiableIdentifier(Identifier))
     )
   )
 )
@@ -84,7 +84,7 @@ f ( x , g ( ) )
 
 Recipe(
   Call(QualifiableIdentifier(Identifier), ArgList(
-    Variable(Identifier),
+    RhsVariable(QualifiableIdentifier(Identifier)),
     Call(QualifiableIdentifier(Identifier), ArgList)
   ))
 )
@@ -101,7 +101,7 @@ f (
 Recipe(
   Call(QualifiableIdentifier(Identifier), ArgList(
     Call(QualifiableIdentifier(Identifier), ArgList),
-    Variable(Identifier)
+    RhsVariable(QualifiableIdentifier(Identifier))
   ))
 )
 
@@ -121,9 +121,12 @@ Recipe(
     Call(QualifiableIdentifier(Identifier), ArgList(
       Call(
         QualifiableIdentifier(Identifier),
-        ArgList(Variable(Identifier), Variable(Identifier))
+        ArgList(
+          RhsVariable(QualifiableIdentifier(Identifier)),
+          RhsVariable(QualifiableIdentifier(Identifier))
+        )
       ),
-      Variable(Identifier)
+      RhsVariable(QualifiableIdentifier(Identifier))
     ))
   ))
 )

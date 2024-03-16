@@ -8,17 +8,17 @@ Call { QualifiableIdentifier ArgList StyleArgList? }
 
 ArgList { "(" ( value ("," value)* )? ")" }
 
-value[@isGroup=Value] { Variable | Call }
+value[@isGroup=Value] { RhsVariable | Call }
 
-Variable { Identifier }
+RhsVariable { QualifiableIdentifier }
 
-Alias { LhsVariable "=" Variable }
+LhsVariable { Identifier StyleArgList? }
+
+Alias { LhsVariable "=" RhsVariable }
 
 Assignment { LhsVariable ("," LhsVariable)* "=" Call }
 
 semi { ";" | insertSemi }
-
-LhsVariable { Variable StyleArgList? }
 
 NumberLiteral { numberLiteralInner Unit? }
 

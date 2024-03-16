@@ -40,7 +40,11 @@ Recipe(
 
 Recipe(
   Namespace(
-    Alias(LhsVariable(Variable(Identifier)), Eq, Variable(Identifier))
+    Alias(
+      LhsVariable(Identifier),
+      Eq,
+      RhsVariable(QualifiableIdentifier(Identifier))
+    )
   )
 )
 
@@ -55,9 +59,12 @@ Recipe(
 Recipe(
   Namespace(
     Assignment(
-      LhsVariable(Variable(Identifier)),
+      LhsVariable(Identifier),
       Eq,
-      Call(QualifiableIdentifier(Identifier), ArgList(Variable(Identifier)))
+      Call(
+        QualifiableIdentifier(Identifier),
+        ArgList(RhsVariable(QualifiableIdentifier(Identifier)))
+      )
     )
   )
 )

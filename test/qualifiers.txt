@@ -15,3 +15,34 @@ Recipe(
     ArgList
   )
 )
+
+# Qualified RhsVariable in Alias
+
+a = b.c
+
+==>
+
+Recipe(
+  Alias(
+    LhsVariable(Identifier),
+    Eq,
+    RhsVariable(QualifiableIdentifier(Identifier, Identifier))
+  )
+)
+
+# Qualified RhsVariable in Call Assignment
+
+a = b(c.d)
+
+==>
+
+Recipe(
+  Assignment(
+    LhsVariable(Identifier),
+    Eq,
+    Call(
+      QualifiableIdentifier(Identifier),
+      ArgList(RhsVariable(QualifiableIdentifier(Identifier, Identifier)))
+    )
+  )
+)
