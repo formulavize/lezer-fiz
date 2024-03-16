@@ -58,3 +58,37 @@ Recipe(
     ArgList(RhsVariable(QualifiableIdentifier(Identifier, Identifier)))
   )
 )
+
+# Qualified StyleTag in StyleTagDeclaration
+
+#s{
+  #x.y
+}
+
+==>
+
+Recipe(
+  StyleTagDeclaration(
+    Identifier,
+    StyleArgList(
+      StyleTag(QualifiableIdentifier(Identifier, Identifier))
+    )
+  )
+)
+
+# Qualified StyleTag in StyleBinding
+
+%a{
+  #x.y
+}
+
+==>
+
+Recipe(
+  StyleBinding(
+    Identifier,
+    StyleTagList(
+      StyleTag(QualifiableIdentifier(Identifier, Identifier))
+    )
+  )
+)

@@ -127,8 +127,8 @@ Recipe(
     QualifiableIdentifier(Identifier),
     ArgList,
     StyleArgList(
-      StyleTag(Identifier),
-      StyleTag(Identifier)
+      StyleTag(QualifiableIdentifier(Identifier)),
+      StyleTag(QualifiableIdentifier(Identifier))
     )
   )
 )
@@ -141,7 +141,7 @@ Recipe(
 
 Recipe(
   StyleTagDeclaration(
-    StyleTag(Identifier),
+    Identifier,
     StyleArgList()
   )
 )
@@ -158,11 +158,11 @@ Recipe(
 
 Recipe(
   StyleTagDeclaration(
-    StyleTag(Identifier),
+    Identifier,
     StyleArgList(
-      StyleTag(Identifier),
+      StyleTag(QualifiableIdentifier(Identifier)),
       StyleDeclaration(PropertyName, StringLiteral),
-      StyleTag(Identifier)
+      StyleTag(QualifiableIdentifier(Identifier))
     )
   )
 )
@@ -178,7 +178,7 @@ Recipe(
 
 Recipe(
   StyleTagDeclaration(
-    StyleTag(Identifier),
+    Identifier,
     StyleArgList(
       StyleDeclaration(PropertyName, NumberLiteral, NumberLiteral)
       StyleDeclaration(
@@ -206,7 +206,7 @@ Recipe(
 
 Recipe(
   StyleTagDeclaration(
-    StyleTag(Identifier),
+    Identifier,
     StyleArgList(
       StyleDeclaration(PropertyName, StringLiteral),
       StyleDeclaration(PropertyName, StringLiteral),
@@ -231,8 +231,8 @@ Recipe(
   StyleBinding(
     Identifier,
     StyleTagList(
-      StyleTag(Identifier)
-      StyleTag(Identifier),
+      StyleTag(QualifiableIdentifier(Identifier))
+      StyleTag(QualifiableIdentifier(Identifier)),
     )
   )
 )
@@ -248,7 +248,7 @@ Recipe(
 
 Recipe(
   StyleTagDeclaration(
-    StyleTag(Identifier),
+    Identifier,
     StyleArgList(
       StyleDeclaration(PropertyName, StringLiteral),
       StringLiteral,

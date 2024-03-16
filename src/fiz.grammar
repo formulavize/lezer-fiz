@@ -32,9 +32,9 @@ styleValue[@isGroup=StyleValue] { ColorLiteral | NumberLiteral | StringLiteral }
 
 StyleDeclaration { PropertyName ":" styleValue ("," styleValue)* semi }
 
-StyleTagDeclaration { StyleTag StyleArgList }
+StyleTagDeclaration { "#" Identifier StyleArgList }
 
-StyleTag { "#" Identifier }
+StyleTag { "#" QualifiableIdentifier }
 
 StyleArgList { "{" (StyleDeclaration | StyleTag | StringLiteral)* "}" }
 
