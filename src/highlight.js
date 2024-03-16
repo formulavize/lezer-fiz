@@ -17,4 +17,5 @@ export const fizHighlighting = styleTags({
   "[ ]": t.squareBracket,
   ":": t.punctuation,
   ", ;": t.separator,
+  ".": t.derefOperator,
 });
