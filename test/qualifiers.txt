@@ -46,3 +46,15 @@ Recipe(
     )
   )
 )
+
+# Qualified RhsVariable in Namespace ArgList
+
+[](x.y)
+
+==>
+
+Recipe(
+  Namespace(
+    ArgList(RhsVariable(QualifiableIdentifier(Identifier, Identifier)))
+  )
+)
