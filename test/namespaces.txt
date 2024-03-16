@@ -27,7 +27,7 @@ Recipe(
 ==>
 
 Recipe(
-  Namespace(Call(Identifier,ArgList))
+  Namespace(Call(QualifiableIdentifier(Identifier), ArgList))
 )
 
 # Alias in Namespace
@@ -55,10 +55,10 @@ Recipe(
 Recipe(
   Namespace(
     Assignment(
-    LhsVariable(Variable(Identifier)),
-    Eq,
-    Call(Identifier,ArgList(Variable(Identifier)))
-  )
+      LhsVariable(Variable(Identifier)),
+      Eq,
+      Call(QualifiableIdentifier(Identifier), ArgList(Variable(Identifier)))
+    )
   )
 )
 

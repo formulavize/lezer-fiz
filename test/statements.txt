@@ -30,10 +30,10 @@ Recipe(
   Assignment(
     LhsVariable(Variable(Identifier)),
     Eq,
-    Call(Identifier,ArgList(Variable(Identifier)))
+    Call(QualifiableIdentifier(Identifier), ArgList(Variable(Identifier)))
   )
   Alias(LhsVariable(Variable(Identifier)), Eq, Variable(Identifier)),
-  Call(Identifier,ArgList)
+  Call(QualifiableIdentifier(Identifier), ArgList)
 )
 
 # Line Comment
@@ -77,12 +77,12 @@ Recipe(
   Assignment(
     LhsVariable(Variable(Identifier)),
     Eq,
-    Call(Identifier,ArgList(Variable(Identifier)))
+    Call(QualifiableIdentifier(Identifier), ArgList(Variable(Identifier)))
   )
   BlockComment
   Alias(LhsVariable(Variable(Identifier)), Eq, Variable(Identifier)),
   BlockComment
-  Call(Identifier,ArgList)
+  Call(QualifiableIdentifier(Identifier), ArgList)
 )
 
 # Semicolons
@@ -97,10 +97,10 @@ Recipe(
   Assignment(
     LhsVariable(Variable(Identifier)),
     Eq,
-    Call(Identifier,ArgList(Variable(Identifier)))
+    Call(QualifiableIdentifier(Identifier), ArgList(Variable(Identifier)))
   )
   Alias(LhsVariable(Variable(Identifier)), Eq, Variable(Identifier)),
-  Call(Identifier,ArgList)
+  Call(QualifiableIdentifier(Identifier), ArgList)
 )
 
 # Semicolons Same Line
@@ -113,9 +113,9 @@ Recipe(
   Assignment(
     LhsVariable(Variable(Identifier)),
     Eq,
-    Call(Identifier,ArgList)
+    Call(QualifiableIdentifier(Identifier), ArgList)
   ),
-  Call(Identifier,ArgList),
+  Call(QualifiableIdentifier(Identifier), ArgList),
   Alias(LhsVariable(Variable(Identifier)), Eq, Variable(Identifier))
 )
 
@@ -133,7 +133,9 @@ Recipe(
   Assignment(
     LhsVariable(Variable(Identifier)),
     Eq,
-    Call(Identifier,ArgList(
+    Call(
+      QualifiableIdentifier(Identifier),
+      ArgList(
       Variable(Identifier),
       Variable(Identifier),
       Variable(Identifier)
@@ -158,26 +160,42 @@ Recipe(
   Assignment(
     LhsVariable(Variable(Identifier)),
     Eq,
-    Call(Identifier,ArgList(Variable(Identifier)))
+    Call(
+      QualifiableIdentifier(Identifier),
+      ArgList(Variable(Identifier))
+    )
   ),
   Assignment(
     LhsVariable(Variable(Identifier)),
     Eq,
-    Call(Identifier,ArgList(Variable(Identifier)))
+    Call(
+      QualifiableIdentifier(Identifier),
+      ArgList(Variable(Identifier))
+    )
   ),
   LineComment,
   Assignment(
     LhsVariable(Variable(Identifier)),
     Eq,
-    Call(Identifier,ArgList(Variable(Identifier)))
+    Call(
+      QualifiableIdentifier(Identifier),
+      ArgList(Variable(Identifier))
+    )
   ),
   Assignment(
     LhsVariable(Variable(Identifier)),
     Eq,
-    Call(Identifier,ArgList(Variable(Identifier)))
+    Call(
+      QualifiableIdentifier(Identifier),
+      ArgList(Variable(Identifier))
+    )
   ),
   LineComment,
   LineComment,
   LineComment,
-  Call(Identifier,ArgList(Variable(Identifier), Variable(Identifier)))
+  Call(
+    QualifiableIdentifier(Identifier),
+    ArgList(Variable(Identifier),
+    Variable(Identifier))
+  )
 )

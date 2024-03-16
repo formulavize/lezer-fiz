@@ -2,7 +2,9 @@
 
 statement { ( Call | Alias | Assignment | StyleTagDeclaration | StyleBinding | Namespace ) semi }
 
-Call { Identifier ArgList StyleArgList? }
+QualifiableIdentifier { Identifier ("." Identifier)* }
+
+Call { QualifiableIdentifier ArgList StyleArgList? }
 
 ArgList { "(" ( value ("," value)* )? ")" }
 
@@ -85,6 +87,8 @@ Namespace { Identifier? "[" statement* "]" ArgList? StyleArgList? }
   @precedence { spaces, newline, Identifier }
 
   "#"
+
+  "."
 
   ":"
 

@@ -1,0 +1,17 @@
+# Qualified Call Identifier
+
+n.x()
+n.m.x()
+
+==>
+
+Recipe(
+  Call(
+    QualifiableIdentifier(Identifier, Identifier),
+    ArgList
+  )
+  Call(
+    QualifiableIdentifier(Identifier, Identifier, Identifier),
+    ArgList
+  )
+)
