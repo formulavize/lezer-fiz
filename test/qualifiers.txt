@@ -1,0 +1,94 @@
+# Qualified Call Identifier
+
+n.x()
+n.m.x()
+
+==>
+
+Recipe(
+  Call(
+    QualifiableIdentifier(Identifier, Identifier),
+    ArgList
+  )
+  Call(
+    QualifiableIdentifier(Identifier, Identifier, Identifier),
+    ArgList
+  )
+)
+
+# Qualified RhsVariable in Alias
+
+a = b.c
+
+==>
+
+Recipe(
+  Alias(
+    LhsVariable(Identifier),
+    Eq,
+    RhsVariable(QualifiableIdentifier(Identifier, Identifier))
+  )
+)
+
+# Qualified RhsVariable in Call Assignment
+
+a = b(c.d)
+
+==>
+
+Recipe(
+  Assignment(
+    LhsVariable(Identifier),
+    Eq,
+    Call(
+      QualifiableIdentifier(Identifier),
+      ArgList(RhsVariable(QualifiableIdentifier(Identifier, Identifier)))
+    )
+  )
+)
+
+# Qualified RhsVariable in Namespace ArgList
+
+[](x.y)
+
+==>
+
+Recipe(
+  Namespace(
+    ArgList(RhsVariable(QualifiableIdentifier(Identifier, Identifier)))
+  )
+)
+
+# Qualified StyleTag in StyleTagDeclaration
+
+#s{
+  #x.y
+}
+
+==>
+
+Recipe(
+  StyleTagDeclaration(
+    Identifier,
+    StyleArgList(
+      StyleTag(QualifiableIdentifier(Identifier, Identifier))
+    )
+  )
+)
+
+# Qualified StyleTag in StyleBinding
+
+%a{
+  #x.y
+}
+
+==>
+
+Recipe(
+  StyleBinding(
+    Identifier,
+    StyleTagList(
+      StyleTag(QualifiableIdentifier(Identifier, Identifier))
+    )
+  )
+)

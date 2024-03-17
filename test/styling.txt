@@ -5,7 +5,7 @@ f(){}
 ==>
 
 Recipe(
-  Call(Identifier,ArgList,StyleArgList)
+  Call(QualifiableIdentifier(Identifier), ArgList, StyleArgList)
 )
 
 # Empty Variable StyleArgList
@@ -16,9 +16,9 @@ x{ } = f()
 
 Recipe(
   Assignment(
-    LhsVariable(Variable(Identifier), StyleArgList),
+    LhsVariable(Identifier, StyleArgList),
     Eq,
-    Call(Identifier,ArgList)
+    Call(QualifiableIdentifier(Identifier), ArgList)
   )
 )
 
@@ -32,22 +32,22 @@ i, j{} = k()
 
 Recipe(
   Assignment(
-    LhsVariable(Variable(Identifier), StyleArgList),
-    LhsVariable(Variable(Identifier), StyleArgList),
+    LhsVariable(Identifier, StyleArgList),
+    LhsVariable(Identifier, StyleArgList),
     Eq,
-    Call(Identifier,ArgList)
+    Call(QualifiableIdentifier(Identifier), ArgList)
   )
   Assignment(
-    LhsVariable(Variable(Identifier), StyleArgList),
-    LhsVariable(Variable(Identifier)),
+    LhsVariable(Identifier, StyleArgList),
+    LhsVariable(Identifier),
     Eq,
-    Call(Identifier,ArgList)
+    Call(QualifiableIdentifier(Identifier), ArgList)
   )
   Assignment(
-    LhsVariable(Variable(Identifier)),
-    LhsVariable(Variable(Identifier), StyleArgList),
+    LhsVariable(Identifier),
+    LhsVariable(Identifier, StyleArgList),
     Eq,
-    Call(Identifier,ArgList)
+    Call(QualifiableIdentifier(Identifier), ArgList)
   )
 )
 
@@ -59,7 +59,8 @@ f(){num: "abc"}
 
 Recipe(
   Call(
-    Identifier, ArgList,
+    QualifiableIdentifier(Identifier),
+    ArgList,
     StyleArgList(StyleDeclaration(PropertyName, StringLiteral))
   )
 )
@@ -75,7 +76,8 @@ f(){
 
 Recipe(
   Call(
-    Identifier, ArgList,
+    QualifiableIdentifier(Identifier),
+    ArgList,
     StyleArgList(
       StyleDeclaration(PropertyName, ColorLiteral),
       StyleDeclaration(PropertyName, ColorLiteral)
@@ -98,7 +100,8 @@ f(){
 
 Recipe(
   Call(
-    Identifier, ArgList,
+    QualifiableIdentifier(Identifier),
+    ArgList,
     StyleArgList(
       StyleDeclaration(PropertyName, NumberLiteral),
       StyleDeclaration(PropertyName, NumberLiteral(Unit)),
@@ -121,10 +124,11 @@ f(){
 
 Recipe(
   Call(
-    Identifier, ArgList,
+    QualifiableIdentifier(Identifier),
+    ArgList,
     StyleArgList(
-      StyleTag(Identifier),
-      StyleTag(Identifier)
+      StyleTag(QualifiableIdentifier(Identifier)),
+      StyleTag(QualifiableIdentifier(Identifier))
     )
   )
 )
@@ -137,7 +141,7 @@ Recipe(
 
 Recipe(
   StyleTagDeclaration(
-    StyleTag(Identifier),
+    Identifier,
     StyleArgList()
   )
 )
@@ -154,11 +158,11 @@ Recipe(
 
 Recipe(
   StyleTagDeclaration(
-    StyleTag(Identifier),
+    Identifier,
     StyleArgList(
-      StyleTag(Identifier),
+      StyleTag(QualifiableIdentifier(Identifier)),
       StyleDeclaration(PropertyName, StringLiteral),
-      StyleTag(Identifier)
+      StyleTag(QualifiableIdentifier(Identifier))
     )
   )
 )
@@ -174,7 +178,7 @@ Recipe(
 
 Recipe(
   StyleTagDeclaration(
-    StyleTag(Identifier),
+    Identifier,
     StyleArgList(
       StyleDeclaration(PropertyName, NumberLiteral, NumberLiteral)
       StyleDeclaration(
@@ -202,7 +206,7 @@ Recipe(
 
 Recipe(
   StyleTagDeclaration(
-    StyleTag(Identifier),
+    Identifier,
     StyleArgList(
       StyleDeclaration(PropertyName, StringLiteral),
       StyleDeclaration(PropertyName, StringLiteral),
@@ -227,8 +231,8 @@ Recipe(
   StyleBinding(
     Identifier,
     StyleTagList(
-      StyleTag(Identifier)
-      StyleTag(Identifier),
+      StyleTag(QualifiableIdentifier(Identifier))
+      StyleTag(QualifiableIdentifier(Identifier)),
     )
   )
 )
@@ -244,7 +248,7 @@ Recipe(
 
 Recipe(
   StyleTagDeclaration(
-    StyleTag(Identifier),
+    Identifier,
     StyleArgList(
       StyleDeclaration(PropertyName, StringLiteral),
       StringLiteral,

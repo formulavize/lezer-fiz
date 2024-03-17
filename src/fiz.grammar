@@ -1,22 +1,24 @@
 @top Recipe { statement* }
 
-statement { ( Call | Alias | Assignment | StyleTagDeclaration | StyleBinding ) semi }
+statement { ( Call | Alias | Assignment | StyleTagDeclaration | StyleBinding | Namespace ) semi }
 
-Call { Identifier ArgList StyleArgList? }
+QualifiableIdentifier { Identifier ("." Identifier)* }
+
+Call { QualifiableIdentifier ArgList StyleArgList? }
 
 ArgList { "(" ( value ("," value)* )? ")" }
 
-value[@isGroup=Value] { Variable | Call }
+value[@isGroup=Value] { RhsVariable | Call }
 
-Variable { Identifier }
+RhsVariable { QualifiableIdentifier }
 
-Alias { LhsVariable "=" Variable }
+LhsVariable { Identifier StyleArgList? }
+
+Alias { LhsVariable "=" RhsVariable }
 
 Assignment { LhsVariable ("," LhsVariable)* "=" Call }
 
 semi { ";" | insertSemi }
-
-LhsVariable { Variable StyleArgList? }
 
 NumberLiteral { numberLiteralInner Unit? }
 
@@ -30,9 +32,9 @@ styleValue[@isGroup=StyleValue] { ColorLiteral | NumberLiteral | StringLiteral }
 
 StyleDeclaration { PropertyName ":" styleValue ("," styleValue)* semi }
 
-StyleTagDeclaration { StyleTag StyleArgList }
+StyleTagDeclaration { "#" Identifier StyleArgList }
 
-StyleTag { "#" Identifier }
+StyleTag { "#" QualifiableIdentifier }
 
 StyleArgList { "{" (StyleDeclaration | StyleTag | StringLiteral)* "}" }
 
@@ -43,6 +45,8 @@ that can be reused by others */
 StyleTagList { "{" StyleTag* "}" }
 
 StyleBinding { "%" Identifier StyleTagList }
+
+Namespace { Identifier? "[" statement* "]" ArgList? StyleArgList? }
 
 @skip { spaces | newline | LineComment | BlockComment }
 
@@ -84,11 +88,13 @@ StyleBinding { "%" Identifier StyleTagList }
 
   "#"
 
+  "."
+
   ":"
 
   "%"
 
-  "(" ")" "{" "}"
+  "(" ")" "{" "}" "[" "]"
 
 }
 
