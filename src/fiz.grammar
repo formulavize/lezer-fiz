@@ -1,6 +1,6 @@
 @top Recipe { statement* }
 
-statement { ( Call | Alias | Assignment | StyleTagDeclaration | StyleBinding | Namespace ) semi }
+statement[@isGroup=Statement] { ( Call | Alias | Assignment | StyleTagDeclaration | StyleBinding | Namespace ) semi }
 
 QualifiableIdentifier { Identifier ("." Identifier)* }
 
