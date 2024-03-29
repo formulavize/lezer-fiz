@@ -6,6 +6,18 @@
 
 Recipe()
 
+# Two Variables Statements
+
+x
+y
+
+==>
+
+Recipe(
+  RhsVariable(QualifiableIdentifier(Identifier))
+  RhsVariable(QualifiableIdentifier(Identifier))
+)
+
 # Two Alias Statements
 
 y = x
