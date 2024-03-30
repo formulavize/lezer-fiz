@@ -46,7 +46,9 @@ StyleTagList { "{" StyleTag* "}" }
 
 StyleBinding { "%" Identifier StyleTagList }
 
-Namespace { Identifier? "[" statement* "]" ArgList? StyleArgList? }
+StatementList { "[" statement* "]" }
+
+Namespace { Identifier? StatementList ArgList? StyleArgList? }
 
 @skip { spaces | newline | LineComment | BlockComment }
 
