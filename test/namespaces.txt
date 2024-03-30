@@ -5,7 +5,7 @@
 ==>
 
 Recipe(
-  Namespace()
+  Namespace(StatementList)
 )
 
 # Empty Named Namespace
@@ -15,7 +15,7 @@ n[]
 ==>
 
 Recipe(
-  Namespace(Identifier)
+  Namespace(Identifier, StatementList)
 )
 
 # Call in Namespace
@@ -27,7 +27,11 @@ Recipe(
 ==>
 
 Recipe(
-  Namespace(Call(QualifiableIdentifier(Identifier), ArgList))
+  Namespace(
+    StatementList(
+      Call(QualifiableIdentifier(Identifier), ArgList)
+    )
+  )
 )
 
 # Alias in Namespace
@@ -40,10 +44,12 @@ Recipe(
 
 Recipe(
   Namespace(
-    Alias(
-      LhsVariable(Identifier),
-      Eq,
-      RhsVariable(QualifiableIdentifier(Identifier))
+    StatementList(
+      Alias(
+        LhsVariable(Identifier),
+        Eq,
+        RhsVariable(QualifiableIdentifier(Identifier))
+      )
     )
   )
 )
@@ -58,12 +64,14 @@ Recipe(
 
 Recipe(
   Namespace(
-    Assignment(
-      LhsVariable(Identifier),
-      Eq,
-      Call(
-        QualifiableIdentifier(Identifier),
-        ArgList(RhsVariable(QualifiableIdentifier(Identifier)))
+    StatementList(
+      Assignment(
+        LhsVariable(Identifier),
+        Eq,
+        Call(
+          QualifiableIdentifier(Identifier),
+          ArgList(RhsVariable(QualifiableIdentifier(Identifier)))
+        )
       )
     )
   )
@@ -79,9 +87,11 @@ Recipe(
 
 Recipe(
   Namespace(
-    StyleTagDeclaration(
-      Identifier,
-      StyleArgList
+    StatementList(
+      StyleTagDeclaration(
+        Identifier,
+        StyleArgList
+      )
     )
   )
 )
@@ -96,7 +106,9 @@ Recipe(
 
 Recipe(
   Namespace(
-    StyleBinding(Identifier, StyleTagList())
+    StatementList(
+      StyleBinding(Identifier, StyleTagList())
+    )
   )
 )
 
@@ -112,8 +124,10 @@ a[
 Recipe(
   Namespace(
     Identifier,
-    Namespace(),
-    Namespace(Identifier)
+    StatementList(
+      Namespace(StatementList),
+      Namespace(Identifier, StatementList)
+    )
   )
 )
 
@@ -128,8 +142,10 @@ Recipe(
 
 Recipe(
   Namespace(
-    LineComment,
-    BlockComment
+    StatementList(
+      LineComment,
+      BlockComment
+    )
   )
 )
 
@@ -141,6 +157,7 @@ Recipe(
 
 Recipe(
   Namespace(
+    StatementList,
     ArgList
   )
 )
@@ -153,6 +170,7 @@ Recipe(
 
 Recipe(
   Namespace(
+    StatementList,
     StyleArgList
   )
 )
@@ -165,6 +183,7 @@ Recipe(
 
 Recipe(
   Namespace(
+    StatementList,
     ArgList,
     StyleArgList
   )

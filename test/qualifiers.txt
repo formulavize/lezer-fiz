@@ -55,6 +55,7 @@ Recipe(
 
 Recipe(
   Namespace(
+    StatementList,
     ArgList(RhsVariable(QualifiableIdentifier(Identifier, Identifier)))
   )
 )
