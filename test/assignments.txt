@@ -22,7 +22,7 @@ Recipe(
   Assignment(
     LhsVariable(Identifier),
     Eq,
-    Call(QualifiableIdentifier(Identifier), ArgList)
+    Call(Identifier, ArgList)
   )
 )
 
@@ -38,6 +38,6 @@ Recipe(
     LhsVariable(Identifier),
     LhsVariable(Identifier),
     Eq,
-    Call(QualifiableIdentifier(Identifier), ArgList)
+    Call(Identifier, ArgList)
   )
 )

@@ -1,21 +1,3 @@
-# Qualified Call Identifier
-
-n.x()
-n.m.x()
-
-==>
-
-Recipe(
-  Call(
-    QualifiableIdentifier(Identifier, Identifier),
-    ArgList
-  )
-  Call(
-    QualifiableIdentifier(Identifier, Identifier, Identifier),
-    ArgList
-  )
-)
-
 # Qualified RhsVariable in Alias
 
 a = b.c
@@ -41,7 +23,7 @@ Recipe(
     LhsVariable(Identifier),
     Eq,
     Call(
-      QualifiableIdentifier(Identifier),
+      Identifier,
       ArgList(RhsVariable(QualifiableIdentifier(Identifier, Identifier)))
     )
   )

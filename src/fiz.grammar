@@ -4,7 +4,7 @@ statement[@isGroup=Statement] { ( Call | RhsVariable | Alias | Assignment | Styl
 
 QualifiableIdentifier { Identifier ("." Identifier)* }
 
-Call { QualifiableIdentifier ArgList StyleArgList? }
+Call { Identifier ArgList StyleArgList? }
 
 ArgList { "(" ( value ("," value)* )? ")" }
 

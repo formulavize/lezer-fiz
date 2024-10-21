@@ -5,7 +5,7 @@ func()
 ==>
 
 Recipe(
-  Call(QualifiableIdentifier(Identifier), ArgList)
+  Call(Identifier, ArgList)
 )
 
 # One Variable
@@ -15,7 +15,7 @@ f( x )
 ==>
 
 Recipe(
-  Call(QualifiableIdentifier(Identifier), ArgList(
+  Call(Identifier, ArgList(
     RhsVariable(QualifiableIdentifier(Identifier))
   ))
 )
@@ -27,7 +27,7 @@ f(x,y)
 ==>
 
 Recipe(
-  Call(QualifiableIdentifier(Identifier), ArgList(
+  Call(Identifier, ArgList(
     RhsVariable(QualifiableIdentifier(Identifier)),
     RhsVariable(QualifiableIdentifier(Identifier))
   ))
@@ -41,7 +41,7 @@ f(x, y, z)
 
 Recipe(
   Call(
-    QualifiableIdentifier(Identifier),
+    Identifier,
     ArgList(
       RhsVariable(QualifiableIdentifier(Identifier)),
       RhsVariable(QualifiableIdentifier(Identifier)),
@@ -57,8 +57,8 @@ f(g())
 ==>
 
 Recipe(
-  Call(QualifiableIdentifier(Identifier), ArgList(
-    Call(QualifiableIdentifier(Identifier), ArgList)
+  Call(Identifier, ArgList(
+    Call(Identifier, ArgList)
   ))
 )
 
@@ -69,9 +69,9 @@ f( g( h() ) )
 ==>
 
 Recipe(
-  Call(QualifiableIdentifier(Identifier), ArgList(
-    Call(QualifiableIdentifier(Identifier), ArgList(
-      Call(QualifiableIdentifier(Identifier), ArgList)
+  Call(Identifier, ArgList(
+    Call(Identifier, ArgList(
+      Call(Identifier, ArgList)
     ))
   ))
 )
@@ -83,9 +83,9 @@ f ( x , g ( ) )
 ==>
 
 Recipe(
-  Call(QualifiableIdentifier(Identifier), ArgList(
+  Call(Identifier, ArgList(
     RhsVariable(QualifiableIdentifier(Identifier)),
-    Call(QualifiableIdentifier(Identifier), ArgList)
+    Call(Identifier, ArgList)
   ))
 )
 
@@ -99,8 +99,8 @@ f (
 ==>
 
 Recipe(
-  Call(QualifiableIdentifier(Identifier), ArgList(
-    Call(QualifiableIdentifier(Identifier), ArgList),
+  Call(Identifier, ArgList(
+    Call(Identifier, ArgList),
     RhsVariable(QualifiableIdentifier(Identifier))
   ))
 )
@@ -117,10 +117,10 @@ f(
 ==>
 
 Recipe(
-  Call(QualifiableIdentifier(Identifier), ArgList(
-    Call(QualifiableIdentifier(Identifier), ArgList(
+  Call(Identifier, ArgList(
+    Call(Identifier, ArgList(
       Call(
-        QualifiableIdentifier(Identifier),
+        Identifier,
         ArgList(
           RhsVariable(QualifiableIdentifier(Identifier)),
           RhsVariable(QualifiableIdentifier(Identifier))

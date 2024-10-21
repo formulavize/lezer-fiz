@@ -29,7 +29,7 @@ Recipe(
 Recipe(
   Namespace(
     StatementList(
-      Call(QualifiableIdentifier(Identifier), ArgList)
+      Call(Identifier, ArgList)
     )
   )
 )
@@ -69,7 +69,7 @@ Recipe(
         LhsVariable(Identifier),
         Eq,
         Call(
-          QualifiableIdentifier(Identifier),
+          Identifier,
           ArgList(RhsVariable(QualifiableIdentifier(Identifier)))
         )
       )
