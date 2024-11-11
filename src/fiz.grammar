@@ -9,6 +9,7 @@ Call { Identifier ArgList StyleArgList? }
 ArgList { "(" ( value ("," value)* )? ")" }
 
 value[@isGroup=Value] { RhsVariable | Call }
+// Though inconsistent with Assignment, we disallow Namespace in ArgList for clarity
 
 RhsVariable { QualifiableIdentifier }
 
@@ -16,7 +17,7 @@ LhsVariable { Identifier StyleArgList? }
 
 Alias { LhsVariable "=" RhsVariable }
 
-Assignment { LhsVariable ("," LhsVariable)* "=" Call }
+Assignment { LhsVariable ("," LhsVariable)* "=" ( Call | Namespace ) }
 
 semi { ";" | insertSemi }
 
