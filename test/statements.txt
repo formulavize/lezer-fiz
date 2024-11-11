@@ -195,9 +195,9 @@ Recipe(
 
 # Diagram
 
-         x = f(i); y = g(j) 
+         x = f(i); y = g(j)
 //       |         |
-   m = a(x); n = b(y)
+   m = a(x); n = b(y);
 //  \       /
 //   \     /
 //    \   /
@@ -244,7 +244,9 @@ Recipe(
   LineComment,
   Call(
     Identifier,
-    ArgList(RhsVariable(QualifiableIdentifier(Identifier)),
-    RhsVariable(QualifiableIdentifier(Identifier)))
+    ArgList(
+      RhsVariable(QualifiableIdentifier(Identifier)),
+      RhsVariable(QualifiableIdentifier(Identifier))
+    )
   )
 )
