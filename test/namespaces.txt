@@ -18,6 +18,37 @@ Recipe(
   Namespace(Identifier, StatementList)
 )
 
+# Assignment of Anonymous Namespace
+
+x = []
+
+==>
+
+Recipe(
+  Assignment(
+    LhsVariable(Identifier),
+    Eq,
+    Namespace(StatementList)
+  )
+)
+
+# Assignment of Named Namespace
+
+x = n[]
+
+==>
+
+Recipe(
+  Assignment(
+    LhsVariable(Identifier),
+    Eq,
+    Namespace(
+      Identifier,
+      StatementList
+    )
+  )
+)
+
 # Call in Namespace
 
 [
