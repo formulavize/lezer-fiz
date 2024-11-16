@@ -1,6 +1,18 @@
 @top Recipe { statement* }
 
-statement[@isGroup=Statement] { ( Call | RhsVariable | Alias | Assignment | StyleTagDeclaration | StyleBinding | Namespace ) semi }
+statement[@isGroup=Statement] {
+  ( 
+    Call |
+    RhsVariable |
+    Alias |
+    Assignment |
+    StyleTagDeclaration |
+    StyleBinding |
+    Namespace |
+    Import
+  )
+  semi
+}
 
 QualifiableIdentifier { Identifier ("." Identifier)* }
 
@@ -51,6 +63,10 @@ StatementList { "[" statement* "]" }
 
 Namespace { Identifier? StatementList ArgList? StyleArgList? }
 
+Import { Identifier? "@" StringLiteral }
+// Import's StringLiteral should be some path-like resource identifier
+// Unquoted identifiers may be allowed if/when we make a package repository
+
 @skip { spaces | newline | LineComment | BlockComment }
 
 @context trackNewline from "./tokens.js"
@@ -96,6 +112,8 @@ Namespace { Identifier? StatementList ArgList? StyleArgList? }
   ":"
 
   "%"
+
+  "@"
 
   "(" ")" "{" "}" "[" "]"
 
