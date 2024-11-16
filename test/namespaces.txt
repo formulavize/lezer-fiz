@@ -219,3 +219,21 @@ Recipe(
     StyleArgList
   )
 )
+
+# Import in Namespace
+
+[
+  @ "test"
+]
+
+==>
+
+Recipe(
+  Namespace(
+    StatementList(
+      Import(
+        StringLiteral
+      )
+    )
+  )
+)

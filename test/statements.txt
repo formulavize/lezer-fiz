@@ -250,3 +250,35 @@ Recipe(
     )
   )
 )
+
+# Empty Anonymous Import
+
+@ ""
+
+==>
+
+Recipe(
+  Import(StringLiteral)
+)
+
+# Aliased Import
+
+test @ "testing"
+
+==>
+
+Recipe(
+  Import(Identifier, StringLiteral)
+)
+
+# Two Import Statements
+
+test @ "one"
+@ "two"
+
+==>
+
+Recipe(
+  Import(Identifier, StringLiteral)
+  Import(StringLiteral)
+)
