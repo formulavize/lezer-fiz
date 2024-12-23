@@ -1,6 +1,6 @@
 {
   "name": "@formulavize/lezer-fiz",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "fiz grammar for lezer",
   "main": "dist/index.cjs",
   "type": "module",
