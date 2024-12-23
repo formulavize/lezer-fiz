@@ -1,0 +1,59 @@
+# Empty Anonymous Import
+
+@ ""
+
+==>
+
+Recipe(
+  Import(StringLiteral)
+)
+
+# Aliased Import
+
+test @ "testing"
+
+==>
+
+Recipe(
+  Import(Identifier, StringLiteral)
+)
+
+# Two Import Statements
+
+test @ "one"
+@ "two"
+
+==>
+
+Recipe(
+  Import(Identifier, StringLiteral)
+  Import(StringLiteral)
+)
+
+# Assignment of Named Import Statement
+
+x = y @ "one"
+
+==>
+
+Recipe(
+  Assignment(
+    LhsVariable(Identifier),
+    Eq,
+    Import(Identifier, StringLiteral)
+  )
+)
+
+# Assignment of Anonymous Import Statement
+
+x =@ "one"
+
+==>
+
+Recipe(
+    Assignment(
+    LhsVariable(Identifier),
+    Eq,
+    Import(StringLiteral)
+  )
+)
