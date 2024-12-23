@@ -29,7 +29,7 @@ LhsVariable { Identifier StyleArgList? }
 
 Alias { LhsVariable "=" RhsVariable }
 
-Assignment { LhsVariable ("," LhsVariable)* "=" ( Call | Namespace ) }
+Assignment { LhsVariable ("," LhsVariable)* "=" ( Call | Namespace | Import ) }
 
 semi { ";" | insertSemi }
 
