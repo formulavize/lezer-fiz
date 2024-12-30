@@ -1,7 +1,7 @@
 {
   "name": "@formulavize/lezer-fiz",
   "version": "0.3.1",
-  "packageManager": "^pnpm@9.0.0",
+  "packageManager": "pnpm@9.15.2",
   "description": "fiz grammar for lezer",
   "main": "dist/index.cjs",
   "type": "module",
@@ -27,9 +27,9 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "rollup -c",
-    "build:watch": "npm run build -- --watch",
+    "build:watch": "chokidar 'src/**/*' -c 'pnpm build'",
     "test": "mocha test/test-*.js",
-    "test:watch": "chokidar '{dist,test}/**/*.{js,txt}' -c 'npm test'",
+    "test:watch": "chokidar '{dist,test}/**/*.{js,txt}' -c 'pnpm test'",
     "format": "prettier .  --write",
     "dev": "run-p *:watch",
     "all": "run-s build test"
