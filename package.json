@@ -1,7 +1,6 @@
 {
   "name": "@formulavize/lezer-fiz",
   "version": "0.3.2",
-  "packageManager": "pnpm@9.15.2",
   "description": "fiz grammar for lezer",
   "main": "dist/index.cjs",
   "type": "module",
@@ -23,6 +22,10 @@
     "only-allow": "^1.2.1",
     "prettier": "^3.4.2",
     "rollup": "^4.29.1"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
