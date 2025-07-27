@@ -18,7 +18,7 @@ Recipe(
   RhsVariable(QualifiableIdentifier(Identifier))
 )
 
-# Two Alias Statements
+# Two Assignment Statements
 
 y = x
 z = y
@@ -26,12 +26,12 @@ z = y
 ==>
 
 Recipe(
-  Alias(
+  Assignment(
     LhsVariable(Identifier),
     Eq,
     RhsVariable(QualifiableIdentifier(Identifier))
   ),
-  Alias(
+  Assignment(
     LhsVariable(Identifier),
     Eq,
     RhsVariable(QualifiableIdentifier(Identifier))
@@ -55,7 +55,7 @@ Recipe(
       ArgList(RhsVariable(QualifiableIdentifier(Identifier)))
     )
   )
-  Alias(
+  Assignment(
     LhsVariable(Identifier),
     Eq,
     RhsVariable(QualifiableIdentifier(Identifier))
@@ -110,7 +110,7 @@ Recipe(
     )
   )
   BlockComment
-  Alias(
+  Assignment(
     LhsVariable(Identifier),
     Eq,
     RhsVariable(QualifiableIdentifier(Identifier))
@@ -136,7 +136,7 @@ Recipe(
       ArgList(RhsVariable(QualifiableIdentifier(Identifier)))
     )
   )
-  Alias(
+  Assignment(
     LhsVariable(Identifier),
     Eq,
     RhsVariable(QualifiableIdentifier(Identifier))
@@ -157,7 +157,7 @@ Recipe(
     Call(Identifier, ArgList)
   ),
   Call(Identifier, ArgList),
-  Alias(
+  Assignment(
     LhsVariable(Identifier),
     Eq,
     RhsVariable(QualifiableIdentifier(Identifier))
@@ -186,7 +186,7 @@ Recipe(
       RhsVariable(QualifiableIdentifier(Identifier))
     ))
   ),
-  Alias(
+  Assignment(
     LhsVariable(Identifier),
     Eq,
     RhsVariable(QualifiableIdentifier(Identifier))

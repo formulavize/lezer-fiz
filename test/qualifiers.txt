@@ -1,11 +1,11 @@
-# Qualified RhsVariable in Alias
+# Qualified RhsVariable in Assignment
 
 a = b.c
 
 ==>
 
 Recipe(
-  Alias(
+  Assignment(
     LhsVariable(Identifier),
     Eq,
     RhsVariable(QualifiableIdentifier(Identifier, Identifier))
