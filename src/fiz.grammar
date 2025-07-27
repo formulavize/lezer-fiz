@@ -4,7 +4,6 @@ statement[@isGroup=Statement] {
   ( 
     Call |
     RhsVariable |
-    Alias |
     Assignment |
     StyleTagDeclaration |
     StyleBinding |
@@ -21,15 +20,13 @@ Call { Identifier ArgList StyleArgList? }
 ArgList { "(" ( value ("," value)* )? ")" }
 
 value[@isGroup=Value] { RhsVariable | Call }
-// Though inconsistent with Assignment, we disallow Namespace in ArgList for clarity
+// Though inconsistent with Assignment, we disallow Namespace and Imports in ArgList for clarity
 
 RhsVariable { QualifiableIdentifier }
 
 LhsVariable { Identifier StyleArgList? }
 
-Alias { LhsVariable "=" RhsVariable }
-
-Assignment { LhsVariable ("," LhsVariable)* "=" ( Call | Namespace | Import ) }
+Assignment { LhsVariable ("," LhsVariable)* "=" ( Call | RhsVariable | Namespace | Import ) }
 
 semi { ";" | insertSemi }
 

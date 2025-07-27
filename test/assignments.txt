@@ -1,11 +1,11 @@
-# Single Variable Alias
+# Single Variable Assignment
 
 x = y
 
 ==>
 
 Recipe(
-  Alias(
+  Assignment(
     LhsVariable(Identifier),
     Eq,
     RhsVariable(QualifiableIdentifier(Identifier))

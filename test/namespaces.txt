@@ -65,7 +65,7 @@ Recipe(
   )
 )
 
-# Alias in Namespace
+# Assignment in Namespace
 
 [
   y = x
@@ -76,7 +76,7 @@ Recipe(
 Recipe(
   Namespace(
     StatementList(
-      Alias(
+      Assignment(
         LhsVariable(Identifier),
         Eq,
         RhsVariable(QualifiableIdentifier(Identifier))
