@@ -138,7 +138,7 @@ Recipe(
 Recipe(
   Namespace(
     StatementList(
-      StyleBinding(Identifier, StyleTagList())
+      StyleBinding(Identifier, StyleArgList())
     )
   )
 )

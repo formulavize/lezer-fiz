@@ -20,7 +20,7 @@ Call { Identifier ArgList StyleArgList? }
 ArgList { "(" ( value ("," value)* )? ")" }
 
 value[@isGroup=Value] { RhsVariable | Call }
-// Though inconsistent with Assignment, we disallow Namespace and Imports in ArgList for clarity
+// Though inconsistent with Assignment, we disallow Namespace and Imports in ArgList for readability
 
 RhsVariable { QualifiableIdentifier }
 
@@ -48,13 +48,7 @@ StyleTag { "#" QualifiableIdentifier }
 
 StyleArgList { "{" (StyleDeclaration | StyleTag | StringLiteral)* "}" }
 
-/* Only StyleTags are allowed in StyleBindings
-Although disallowing StyleDeclarations is inconsistent with other curly brackets
-(i.e. StyleArgList), this forces StyleBinding users to define StyleTags
-that can be reused by others */
-StyleTagList { "{" StyleTag* "}" }
-
-StyleBinding { "%" Identifier StyleTagList }
+StyleBinding { "%" Identifier StyleArgList }
 
 StatementList { "[" statement* "]" }
 

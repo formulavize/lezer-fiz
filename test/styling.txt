@@ -217,7 +217,7 @@ Recipe(
   )
 )
 
-# Style Binding
+# Style Binding with StyleTags
 
 %a{}
 %b{
@@ -227,12 +227,67 @@ Recipe(
 ==>
 
 Recipe(
-  StyleBinding(Identifier, StyleTagList())
+  StyleBinding(Identifier, StyleArgList())
   StyleBinding(
     Identifier,
-    StyleTagList(
+    StyleArgList(
       StyleTag(QualifiableIdentifier(Identifier))
       StyleTag(QualifiableIdentifier(Identifier)),
+    )
+  )
+)
+
+# Style Binding with Style Declarations
+
+%c{
+  color: #ff0000
+  font-size: 12px
+}
+
+==>
+
+Recipe(
+  StyleBinding(
+    Identifier,
+    StyleArgList(
+      StyleDeclaration(PropertyName, ColorLiteral),
+      StyleDeclaration(PropertyName, NumberLiteral(Unit))
+    )
+  )
+)
+
+# Style Binding with StringLiteral
+
+%d{
+  "description"
+}
+
+==>
+
+Recipe(
+  StyleBinding(
+    Identifier,
+    StyleArgList(StringLiteral)
+  )
+)
+
+# Style Binding Mixed Content
+
+%e{
+  #base
+  color: #abc
+  "note"
+}
+
+==>
+
+Recipe(
+  StyleBinding(
+    Identifier,
+    StyleArgList(
+      StyleTag(QualifiableIdentifier(Identifier)),
+      StyleDeclaration(PropertyName, ColorLiteral),
+      StringLiteral
     )
   )
 )
