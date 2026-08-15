@@ -1,0 +1,154 @@
+# Empty Renderer Directive
+
+^cytoscape{}
+
+==>
+
+Recipe(
+  RendererDirective(Identifier, StyleArgList())
+)
+
+# Renderer Directive with Style Declarations
+
+^cytoscape{
+  rankDir: "LR"
+  background-color: #ff0000
+}
+
+==>
+
+Recipe(
+  RendererDirective(
+    Identifier,
+    StyleArgList(
+      StyleDeclaration(PropertyName, StringLiteral),
+      StyleDeclaration(PropertyName, ColorLiteral)
+    )
+  )
+)
+
+# Renderer Directive with StyleTags
+
+^cytoscape{
+  #compact #dark
+}
+
+==>
+
+Recipe(
+  RendererDirective(
+    Identifier,
+    StyleArgList(
+      StyleTag(QualifiableIdentifier(Identifier)),
+      StyleTag(QualifiableIdentifier(Identifier))
+    )
+  )
+)
+
+# Renderer Directive with Qualified StyleTag
+
+^cytoscape{ #themes.compact }
+
+==>
+
+Recipe(
+  RendererDirective(
+    Identifier,
+    StyleArgList(
+      StyleTag(QualifiableIdentifier(Identifier, Identifier))
+    )
+  )
+)
+
+# Renderer Directive Mixed Content
+
+^cytoscape{
+  #base
+  rankDir: "TB"
+  "note"
+}
+
+==>
+
+Recipe(
+  RendererDirective(
+    Identifier,
+    StyleArgList(
+      StyleTag(QualifiableIdentifier(Identifier)),
+      StyleDeclaration(PropertyName, StringLiteral),
+      StringLiteral
+    )
+  )
+)
+
+# Multiple Renderer Directives
+
+^cytoscape{ rankDir: "LR" }
+^minimal{ x: "y" }
+
+==>
+
+Recipe(
+  RendererDirective(
+    Identifier,
+    StyleArgList(StyleDeclaration(PropertyName, StringLiteral))
+  )
+  RendererDirective(
+    Identifier,
+    StyleArgList(StyleDeclaration(PropertyName, StringLiteral))
+  )
+)
+
+# Renderer Directive Alongside Global Style Binding
+
+*node{ color: #abc }
+^cytoscape{ rankDir: "RL" }
+
+==>
+
+Recipe(
+  GlobalStyleBinding(
+    Identifier,
+    StyleArgList(StyleDeclaration(PropertyName, ColorLiteral))
+  )
+  RendererDirective(
+    Identifier,
+    StyleArgList(StyleDeclaration(PropertyName, StringLiteral))
+  )
+)
+
+# Renderer Directive with Semicolons
+
+^cytoscape{ rankDir: "LR"; background-color: "#fff" };
+
+==>
+
+Recipe(
+  RendererDirective(
+    Identifier,
+    StyleArgList(
+      StyleDeclaration(PropertyName, StringLiteral),
+      StyleDeclaration(PropertyName, StringLiteral)
+    )
+  )
+)
+
+# Renderer Directive in a StatementList
+
+ns[
+  ^cytoscape{ rankDir: "LR" }
+]
+
+==>
+
+Recipe(
+  Namespace(
+    Identifier,
+    StatementList(
+      RendererDirective(
+        Identifier,
+        StyleArgList(StyleDeclaration(PropertyName, StringLiteral))
+      )
+    )
+  )
+)

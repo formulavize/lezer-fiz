@@ -8,6 +8,7 @@ statement[@isGroup=Statement] {
     StyleTagDeclaration |
     StyleBinding |
     GlobalStyleBinding |
+    RendererDirective |
     Namespace |
     Import
   )
@@ -52,6 +53,8 @@ StyleArgList { "{" (StyleDeclaration | StyleTag | StringLiteral)* "}" }
 StyleBinding { "%" Identifier StyleArgList }
 
 GlobalStyleBinding { "*" Identifier StyleArgList }
+
+RendererDirective { "^" Identifier StyleArgList }
 
 StatementList { "[" statement* "]" }
 
@@ -110,6 +113,8 @@ Import { Identifier? "@" StringLiteral }
   "@"
 
   "*"
+
+  "^"
 
   "(" ")" "{" "}" "[" "]"
 
