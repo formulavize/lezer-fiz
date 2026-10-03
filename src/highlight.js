@@ -13,6 +13,7 @@ export const fizHighlighting = styleTags({
   StyleTag: t.tagName,
   Namespace: t.namespace,
   "RendererDirective/Identifier": t.annotation,
+  "AboutNote/Identifier": t.annotation,
   "( )": t.paren,
   "{ }": t.brace,
   "[ ]": t.squareBracket,

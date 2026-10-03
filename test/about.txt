@@ -1,0 +1,188 @@
+# Empty About Note
+
+~about{}
+
+==>
+
+Recipe(
+  AboutNote(Identifier, StyleArgList())
+)
+
+# Unnamed About Note
+
+~{}
+
+==>
+
+Recipe(
+  AboutNote(StyleArgList())
+)
+
+# Unnamed About Note with StringLiteral
+
+~{ "unkeyed description" }
+
+==>
+
+Recipe(
+  AboutNote(StyleArgList(StringLiteral))
+)
+
+# About Note with Style Declarations
+
+~about{
+  author: "anthologen"
+  version: 1.2
+  license: "MIT"
+}
+
+==>
+
+Recipe(
+  AboutNote(
+    Identifier,
+    StyleArgList(
+      StyleDeclaration(PropertyName, StringLiteral),
+      StyleDeclaration(PropertyName, NumberLiteral),
+      StyleDeclaration(PropertyName, StringLiteral)
+    )
+  )
+)
+
+# About Note with StyleTags
+
+~about{
+  #meta #draft
+}
+
+==>
+
+Recipe(
+  AboutNote(
+    Identifier,
+    StyleArgList(
+      StyleTag(QualifiableIdentifier(Identifier)),
+      StyleTag(QualifiableIdentifier(Identifier))
+    )
+  )
+)
+
+# About Note with Qualified StyleTag
+
+~about{ #provenance.internal }
+
+==>
+
+Recipe(
+  AboutNote(
+    Identifier,
+    StyleArgList(
+      StyleTag(QualifiableIdentifier(Identifier, Identifier))
+    )
+  )
+)
+
+# About Note Mixed Content
+
+~about{
+  #draft
+  author: "anthologen"
+  "free form description"
+}
+
+==>
+
+Recipe(
+  AboutNote(
+    Identifier,
+    StyleArgList(
+      StyleTag(QualifiableIdentifier(Identifier)),
+      StyleDeclaration(PropertyName, StringLiteral),
+      StringLiteral
+    )
+  )
+)
+
+# About Note with Semicolons
+
+~about{ author: "anthologen"; license: "MIT" };
+
+==>
+
+Recipe(
+  AboutNote(
+    Identifier,
+    StyleArgList(
+      StyleDeclaration(PropertyName, StringLiteral),
+      StyleDeclaration(PropertyName, StringLiteral)
+    )
+  )
+)
+
+# Multiple About Notes
+
+~about{ version: 1 }
+~provenance{ source: "upstream" }
+~{ "unnamed" }
+
+==>
+
+Recipe(
+  AboutNote(
+    Identifier,
+    StyleArgList(StyleDeclaration(PropertyName, NumberLiteral))
+  )
+  AboutNote(
+    Identifier,
+    StyleArgList(StyleDeclaration(PropertyName, StringLiteral))
+  )
+  AboutNote(StyleArgList(StringLiteral))
+)
+
+# About Note Alongside Other Statements
+
+~about{ author: "anthologen" }
+*node{ color: #abc }
+^cytoscape{ rankDir: "LR" }
+f(x)
+
+==>
+
+Recipe(
+  AboutNote(
+    Identifier,
+    StyleArgList(StyleDeclaration(PropertyName, StringLiteral))
+  )
+  GlobalStyleBinding(
+    Identifier,
+    StyleArgList(StyleDeclaration(PropertyName, ColorLiteral))
+  )
+  RendererDirective(
+    Identifier,
+    StyleArgList(StyleDeclaration(PropertyName, StringLiteral))
+  )
+  Call(
+    Identifier,
+    ArgList(RhsVariable(QualifiableIdentifier(Identifier)))
+  )
+)
+
+# About Note in a StatementList
+
+ns[
+  ~about{ scope: "inner" }
+]
+
+==>
+
+Recipe(
+  Namespace(
+    Identifier,
+    StatementList(
+      AboutNote(
+        Identifier,
+        StyleArgList(StyleDeclaration(PropertyName, StringLiteral))
+      )
+    )
+  )
+)
